@@ -2,6 +2,33 @@
 
 ## 1. Jelenlegi helyzet
 
+### 1.1. Feladatkezelés ###
+
+A SupplyMasters dolgozói jelenleg **saját maguk** írják fel a napi teendőiket.
+A rögzítés legtöbbször **papíron** vagy különböző fájlokban (Word, Excel) történik.
+A feladatok státuszát kézzel jelölik meg, például áthúzással vagy szöveges megjegyzéssel.
+Nincs központi rendszer a feladatok egységes kezelésére és összehangolására.
+Ez gyakran duplikációhoz, hiányzó információkhoz és átláthatatlansághoz vezet.
+A feladatok kiosztása nem strukturált folyamat, sokszor személyes egyeztetés alapján zajlik.
+
+### 1.2. Hibakezelés és archiválás ###
+
+A hibák rögzítése egyéni megoldásokkal történik, **többnyire jegyzetfüzetben**.
+A korábbi feladatok visszakeresése emiatt hosszadalmas és bizonytalan.
+Archiválás során a régebbi adatok gyakran elvesznek vagy nehezen érhetők el.
+A felelősségek és feladatlépések utólagos tisztázása sokszor lehetetlen.
+Nincs naplózás, amely rögzítené a változásokat vagy az elvégzett módosításokat.
+A folyamat emiatt nem támogatja az átlátható munkaszervezést.
+
+### 1.3. Felettesi ellenőrzés ###
+
+A dolgozóknak nap végén **kézzel** kell elkészíteniük az összesítő jelentést.
+Ezeket a vezetők manuálisan ellenőrzik, ami időigényes és hibára hajlamos.
+Nincs lehetőség valós idejű követésre, így a vezetők csak utólag látnak rá a munkára.
+A jelentések minősége nagymértékben a dolgozók precizitásától függ.
+Ez nehezíti a határidők betartását és az aktuális munkaterhelés felmérését.
+A jelenlegi rendszer nem biztosít megbízható, naprakész átláthatóságot a vezetőség számára.
+
 ## 2. Megrendelői vízió (Vágyálom)
 
 ### 2.1 Áttekintés
