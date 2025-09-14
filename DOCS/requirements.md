@@ -2,32 +2,38 @@
 
 ## 1. Jelenlegi helyzet
 
-### 1.1. Feladatkezelés ###
+### 1.1. Teendők nyilvántartása
 
-A SupplyMasters dolgozói jelenleg **saját maguk** írják fel a napi teendőiket.
-A rögzítés legtöbbször **papíron** vagy különböző fájlokban (Word, Excel) történik.
-A feladatok státuszát kézzel jelölik meg, például áthúzással vagy szöveges megjegyzéssel.
-Nincs központi rendszer a feladatok egységes kezelésére és összehangolására.
-Ez gyakran duplikációhoz, hiányzó információkhoz és átláthatatlansághoz vezet.
-A feladatok kiosztása nem strukturált folyamat, sokszor személyes egyeztetés alapján zajlik.
+A SupplyMasters munkatársai jelenleg saját maguk rögzítik a napi feladataikat, jellemzően **jegyzetfüzetben vagy különböző fájlokban**.
+A feladatok kezelése teljesen decentralizált, **nincs közös rendszer**, amely segítené a koordinációt.
+A feladatok állapotát kézzel jelölik meg, például kihúzással vagy szöveges megjegyzésekkel, ami sokszor félreérthető.
+Ez a módszer nem biztosít pontos nyilvántartást, mivel könnyen előfordul, hogy egy-egy feladat kimarad, vagy többször is feljegyzésre kerül.
+Az adatok széttagoltan léteznek, nincs garancia arra, hogy mindenki ugyanazt az információt használja.
+A feladatok kiosztása legtöbbször személyes vagy telefonos egyeztetéssel történik, ami további bizonytalanságot okoz.
+Nincs lehetőség központi áttekintésre, így a vezetők nem látják valós időben, hogy melyik dolgozó mivel foglalkozik.
+Az egyéni nyilvántartások miatt a munkafolyamatok átláthatósága jelentősen csökken, és **a csapatmunka hatékonysága is gyengül**.
 
-### 1.2. Hibakezelés és archiválás ###
+### 1.2. Hibák és régi adatok kezelése
 
-A hibák rögzítése egyéni megoldásokkal történik, **többnyire jegyzetfüzetben**.
-A korábbi feladatok visszakeresése emiatt hosszadalmas és bizonytalan.
-Archiválás során a régebbi adatok gyakran elvesznek vagy nehezen érhetők el.
-A felelősségek és feladatlépések utólagos tisztázása sokszor lehetetlen.
-Nincs naplózás, amely rögzítené a változásokat vagy az elvégzett módosításokat.
-A folyamat emiatt nem támogatja az átlátható munkaszervezést.
+A hibák feljegyzése sokszor informális módon történik, például **szóbeli bejelentés** vagy **rögtönzött jegyzet** formájában.
+Ez azt eredményezi, hogy a **problémák nyomonkövetése nehézkes**, **gyakran elvész** az információ.
+A feladatok múltbeli állapotának visszakeresése csak akkor lehetséges, ha a dolgozó saját jegyzeteit megőrzi.
+Az archiválási folyamat nem szabályozott, így a régebbi feladatok és hibák gyakran végleg eltűnnek.
+A felelősségi körök tisztázása emiatt sokszor lehetetlen, mivel nem rögzül, ki mikor és milyen lépést tett.
+Nincs olyan naplózás, amely automatikusan dokumentálná a változtatásokat, így a hibák pontos forrása visszamenőleg nem feltárható.
+Az adatkezelés nem biztosít átláthatóságot, ami különösen problémás, ha egy projekt több embert érint.
+Ez az állapot jelentősen hátráltatja a vállalat hatékonyságát, hiszen a régi tapasztalatokból nem lehet tanulni.
 
-### 1.3. Felettesi ellenőrzés ###
+### 1.3. Ellenőrzés és vezetői rálátás
 
-A dolgozóknak nap végén **kézzel** kell elkészíteniük az összesítő jelentést.
-Ezeket a vezetők manuálisan ellenőrzik, ami időigényes és hibára hajlamos.
-Nincs lehetőség valós idejű követésre, így a vezetők csak utólag látnak rá a munkára.
-A jelentések minősége nagymértékben a dolgozók precizitásától függ.
-Ez nehezíti a határidők betartását és az aktuális munkaterhelés felmérését.
-A jelenlegi rendszer nem biztosít megbízható, naprakész átláthatóságot a vezetőség számára.
+A dolgozóknak minden nap összesítőt kell készíteniük a saját munkájukról, amelyet **kézzel** állítanak össze.
+A vezetők ezeket az összesítőket ellenőrzik, de a folyamat lassú és sok hibalehetőséget hordoz.
+Nincs lehetőség a feladatok valós idejű követésére, így a vezetők csak utólag értesülnek az elvégzett munkáról.
+Ez megnehezíti a feladatok priorizálását, mivel nem áll rendelkezésre naprakész információ a dolgozók terheltségéről.
+A jelentések minősége erősen függ az alkalmazottak pontosságától és fegyelmétől.
+A vezetők gyakran kénytelenek személyesen egyeztetni, ha pontos adatokat szeretnének kapni.
+A határidők betartása emiatt sokszor kérdéses, hiszen nincs automatikus figyelmeztetés vagy nyomonkövetés.
+A rendszer nem biztosít átfogó átláthatóságot, így a menedzsment döntései **nem mindig megbízható** adatokra épülnek.
 
 ## 2. Megrendelői vízió (Vágyálom)
 
