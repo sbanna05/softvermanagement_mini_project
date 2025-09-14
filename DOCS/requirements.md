@@ -6,11 +6,41 @@
 
 ### Megrendelői cél
 
-## 3. Rendszerre vonatkozó szabályok
+## 3. Jelenlegi üzleti folyamat
 
-## 4. Követelménylista
+### 3.1. Feladatkezelés ###
+- Dolgozó saját maga írja fel a feladatait.
+- Kézzel kell megjelölni a *kész* feladatokat.
+- Jelenlegi helyzetben nincs lehetőség a feladatok állapotának automatikus ellenőrzésére.
 
-### 4.1 Funkcionális követelmények
+### 3.2. Hibakezelés és archiválás ###
+- Jelenlegi rendszerben nehéz vissza keresni a hibákat.
+- Archiválás esetén a régebbi feladatok elvesznek.
+- Bonyolult az egyes lépések nyomonkövetése.
+
+### 3.3. Felettesi ellenőrzés ###
+- A dolgozóknak kézzel kell elkészíteni a napi összesítőt.
+- Adminisztráció során a vezetők kézzel ellenőrzik a teendőket.
+
+## 4. Igényelt üzleti folyamat
+
+### 4.1. Feladatkezelés ###
+- A felettesek adják ki a feladatokat.
+- Belépéskor a dolgozónak automatikusan megjelennek a napi feladatai.
+- Prioritási sorrend létrehozható.
+- Határidő és emlékeztetők beállítása, hogy minden feladat időben *kész* legyen.
+
+### 4.2. Hibakezelés és archiválás ###
+- A kész feladatok archiválása
+- A rendszerben könnyen visszakereshető, hogy ki milyen lépésért felel.
+
+### 4.3. Felettesi ellenőrzés ###
+- A nap végén automatikus összesítő generálódik a dolgozók aznapi munkájáról.
+- A vezetők valós időben követhetik a feladatok állapotát.
+
+## 5. Követelménylista
+
+### 5.1 Funkcionális követelmények
 
 A rendszer legfontosabb funkciója a feladatok kezelése. Minden feladatnak rendelkeznie kell
 egyedi azonosítóval, valamint lehetőséget kell adni a feladat létrehozására, szerkesztésére és törlésére.
@@ -31,7 +61,7 @@ A rendszer minden módosítást naplóz, hogy a vezetőség visszakövetni tudja
 A feladatok kereshetők és szűrhetők különböző paraméterek alapján, valamint értesítést kell küldeni
 a közelgő határidőkről. A menedzsment számára a feladatok állapota exportálható legyen Markdown vagy CSV formátumban.
 
-### 4.2 Nem-funkcionális követelmények
+### 5.2 Nem-funkcionális követelmények
 
 A rendszer működésének minőségi elvárásai közé tartozik, hogy az adatok mindig biztonságosan
 és konzisztensen tárolódjanak. Az alkalmazás felületének felhasználóbarátnak kell lennie, és
