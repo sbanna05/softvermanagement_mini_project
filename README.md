@@ -2,6 +2,6 @@
 
 ## Dokumentáció
 
-- [Követelmény specifikáció](requirements.md)
+- [Követelmény specifikáció](DOCS/requirements.md)
 
-- [Funkcionális specifikáció](funkspec.md)
+- [Funkcionális specifikáció](DOCS/funkspec.md)
