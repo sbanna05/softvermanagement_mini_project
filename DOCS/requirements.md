@@ -4,6 +4,40 @@
 
 ## 2. Megrendelői vízió (Vágyálom)
 
+# Követelmény specifikáció – SupplyMasters Vágyálomrendszer
+## 1. Áttekintés
+
+A SupplyMasters vágyálomrendszer célja, hogy a feladatkezelést hatékonyabbá, átláthatóbbá és biztonságosabbá tegye.
+Webes, reszponzív felület, mobilon és desktopon is használható.
+
+## 2. Megrendelői vágyak
+
+Központi nyilvántartás az összes feladatról.
+Új feladat létrehozása, módosítása, törlése.
+Feladatok kategorizálása, címkézése és prioritások kezelése.
+Kanban tábla: Backlog → Doing → Done állapotok.
+Több felhasználó kezelése, jogosultságokkal.
+Automatikus értesítések határidőkről és felelős változásokról.
+Keresés és szűrés címke, határidő, státusz, felelős szerint.
+Riportok és exportálás (Markdown, CSV).
+Naplózás minden felhasználói műveletről.
+
+## 3. Nem-funkcionális vágyak
+
+Adatbiztonság: titkosított tárolás, jogosultság alapú hozzáférés.
+Intuitív, reszponzív felület, minimális betanulási idővel.
+Teljesítmény: akár 10.000 aktív feladat kezelése lassulás nélkül.
+Moduláris felépítés: könnyen bővíthető új funkciókkal (pl. naptár, riportok).
+Megbízhatóság: adatok mentése és visszaállítás lehetősége.
+
+## 4. Elfogadási kritériumok
+
+Felhasználó képes új feladatot létrehozni, módosítani és törölni.
+Rendszer megjeleníti az összes feladatot és státuszát.
+Feladatok áthelyezése oszlopok között működik.
+Értesítések és riportok helyesen működnek.
+Adatok futások között megőrződnek, teljesítmény megfelel az elvárásoknak.
+
 ### Megrendelői cél
 
 ## 3. Jelenlegi üzleti folyamat
