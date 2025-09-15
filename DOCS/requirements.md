@@ -94,11 +94,13 @@ teljesítmény megfelel az előírt elvárásoknak.
 - Prioritási sorrend létrehozható.
 - Határidő és emlékeztetők beállítása, hogy minden feladat időben *kész* legyen.
 
-### 4.2. Hibakezelés és archiválás ###
+### 4.2. Hibakezelés és archiválás 
+
 - A kész feladatok archiválása
 - A rendszerben könnyen visszakereshető, hogy ki milyen lépésért felel.
 
-### 4.3. Felettesi ellenőrzés ###
+### 4.3. Felettesi ellenőrzés
+
 - A nap végén automatikus összesítő generálódik a dolgozók aznapi munkájáról.
 - A vezetők valós időben követhetik a feladatok állapotát.
 
@@ -106,34 +108,35 @@ teljesítmény megfelel az előírt elvárásoknak.
 
 ### 5.1 Funkcionális követelmények
 
-A rendszer legfontosabb funkciója a feladatok kezelése. Minden feladatnak rendelkeznie kell
-egyedi azonosítóval, valamint lehetőséget kell adni a feladat létrehozására, szerkesztésére és törlésére.
-A feladatokhoz határidő, prioritás és címkék rendelhetők, valamint a felhasználó kiválaszthatja
-a feladattípusát is (pl. adminisztratív, raktári, értékesítési).
+| ID  | Verzió | Követelmény | Leírás | Prioritás |
+|-----|--------|-------------|--------|-----------|
+| F1  | v1     | Feladat létrehozása | Új feladat rögzítésekor kötelező megadni a címet, határidőt és felelőst. | Magas |
+| F2  | v1     | Feladat módosítása és törlése | A rendszer lehetővé teszi a meglévő feladatok tartalmának frissítését vagy törlését. | Magas |
+| F3  | v1     | Feladattípusok kezelése | A felhasználó megadhatja a feladat típusát (adminisztratív, raktári, értékesítési). | Közepes |
+| F4  | v1     | Prioritás beállítása | A feladatokhoz hozzárendelhető prioritás (alacsony, közepes, magas). | Magas |
+| F5  | v1     | Dinamikus prioritás | Közelgő határidő esetén a rendszer automatikusan magasabb szintre emelheti a prioritást. | Közepes |
+| F6  | v1     | Címkézés | A feladatok szabadon címkézhetők a gyorsabb kereshetőség érdekében. | Közepes |
+| F7  | v1     | Státuszkezelés | A feladatok Kanban táblán követhetők: Backlog → Doing → Done. | Magas |
+| F8  | v1     | Drag & drop mozgatás | A feladatok áthelyezése oszlopok között drag-and-drop módszerrel történhet. | Közepes |
+| F9  | v1     | Jogosultságok kezelése | Három szerepkör biztosít eltérő hozzáférést: CEO (teljes), Részlegvezető (csapat szintű), Munkatárs (saját feladatok). | Magas |
+| F10 | v1     | Naplózás | A rendszer minden módosítást automatikusan rögzít. | Magas |
+| F11 | v1     | Keresési funkció | A felhasználó kulcsszavak alapján kereshet a feladatok között. | Magas |
+| F12 | v1     | Szűrési lehetőségek | A feladatok szűrhetők címke, határidő, státusz, felelős és típus szerint. | Magas |
+| F13 | v1     | Értesítések | A rendszer automatikus értesítést küld a határidőkről és státuszváltozásokról. | Magas |
+| F14 | v1     | Exportálás | A feladatlista exportálható CSV vagy Markdown formátumban. | Közepes |
+| F15 | v1     | Riportok | A CEO számára havi összesítések készíthetők a feladatok teljesítéséről. | Közepes |
 
-A feladatok státusza változtatható, és Kanban alapú táblán kell megjelenniük három fő oszlopban:
-*Backlog*, *Doing* és *Done*.
+---
 
-A többfelhasználós működés elengedhetetlen, ezért szükséges a jogosultságkezelés.
-Három szerepkör kerül kialakításra:
+### 5. 2 Nem-funkcionális követelmények
 
-- **CEO**, aki minden feladathoz hozzáfér és riportokat készíthet.
-- **Részlegvezető**, aki a saját részlegének feladatait kezeli és kiosztja.  
-- **Munkatárs**, aki csak a rábízott feladatokat látja és módosíthatja a státuszukat.  
-
-A rendszer minden módosítást naplóz, hogy a vezetőség visszakövetni tudja a tevékenységeket.  
-A feladatok kereshetők és szűrhetők különböző paraméterek alapján, valamint értesítést kell küldeni
-a közelgő határidőkről. A menedzsment számára a feladatok állapota exportálható legyen Markdown vagy CSV formátumban.
-
-### 5.2 Nem-funkcionális követelmények
-
-A rendszer működésének minőségi elvárásai közé tartozik, hogy az adatok mindig biztonságosan
-és konzisztensen tárolódjanak. Az alkalmazás felületének felhasználóbarátnak kell lennie, és
-**desktop first** megközelítéssel készül, mivel az elsődleges használat irodai környezetben történik.  
-Emellett a rendszernek támogatnia kell a táblagépes és mobiltelefonos használatot is, hogy
-a munkatársak raktári környezetben vagy terepen is hozzáférjenek a feladataikhoz.
-
-Az adatbázisnak naprakésznek kell maradnia, és támogatnia kell az automatikus mentést és visszaállítást.
-Az adatok védelme érdekében minden érzékeny információt titkosítva kell tárolni.
-A rendszernek skálázhatónak kell lennie, hogy a jövőben új modulokkal bővíthető legyen.
-Fontos továbbá, hogy nagy mennyiségű feladat esetén se lassuljon le, a teljesítménynek mindig megfelelőnek kell maradnia.
+| ID  | Verzió | Követelmény | Leírás | Prioritás |
+|-----|--------|-------------|--------|-----------|
+| N1  | v1     | Adatbiztonság | Minden érzékeny adat titkosítva kerül tárolásra, a hozzáférés szerepkörökhöz kötött. | Magas |
+| N2  | v1     | Adatintegritás | Az adatbázis garantálja a következetes és naprakész adatok meglétét. | Magas |
+| N3  | v1     | Mentés és helyreállítás | Rendszeres automatikus adatmentés és gyors visszaállítási lehetőség biztosított. | Magas |
+| N4  | v1     | Skálázhatóság | A rendszer modulárisan bővíthető új funkciókkal, pl. naptár integrációval. | Közepes |
+| N5  | v1     | Teljesítmény | Legalább 10 000 aktív feladat kezelésére képes észrevehető lassulás nélkül. | Magas |
+| N6  | v1     | Felhasználói élmény | Az alkalmazás felülete letisztult, intuitív, rövid betanulási időt igényel. | Magas |
+| N7  | v1     | Reszponzivitás | A rendszer **desktop first** elv szerint épül, de mobilon és tableten is teljes funkcionalitással működik. | Magas |
+| N8  | v1     | Megbízhatóság | Az alkalmazás folyamatosan rendelkezésre áll, minimális leállással. | Magas |
