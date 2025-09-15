@@ -35,7 +35,7 @@ A vezetők gyakran kénytelenek személyesen egyeztetni, ha pontos adatokat szer
 A határidők betartása emiatt sokszor kérdéses, hiszen nincs automatikus figyelmeztetés vagy nyomonkövetés.
 A rendszer nem biztosít átfogó átláthatóságot, így a menedzsment döntései **nem mindig megbízható** adatokra épülnek.
 
-## 2. Megrendelői vízió (Vágyálom) – 20 soros változat
+## 2. Megrendelői vízió (Vágyálom)
 
 ### 2.1 Áttekintés
 A SupplyMasters vágyálomrendszer célja, hogy a feladatkezelést hatékonyabbá,
