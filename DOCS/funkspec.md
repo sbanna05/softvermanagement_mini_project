@@ -1,5 +1,40 @@
 # Funkcionális specifikáció – SupplyMasters Teendőlista alkalmazás
 
+## 1. Jelenlegi helyzet
+
+### 1.1. Teendők nyilvántartása
+A SupplyMasters vállalat jelenlegi működésében a dolgozók különböző, személyes megoldásokkal rögzítik a napi **feladataikat** – jellemzően papíralapú jegyzetfüzetekben vagy különféle digitális fájlokban. Ez a **decentralizált**, nem szabványos nyilvántartás azt eredményezi, hogy nincs központi rendszer, amely egységesen támogatná a feladatok kiosztását és kezelését.
+
+A jelenlegi helyzet fő problémái:
+- **Manuális** státuszkezelés (kihúzás, megjegyzés) → gyakori félreértés
+- **Széttagolt információk**, nincs egységes adatbázis
+- A feladatok kiosztása többnyire **személyesen** vagy telefonon történik
+- A vezetők nem kapnak **valós idejű** rálátást a munkára
+
+Ennek következtében gyakran fordul elő, hogy bizonyos teendők kimaradnak, vagy többször is rögzítésre kerülnek, ami torzítja az adatokat. A szétszórt információk miatt a csapat tagjai nem mindig ugyanazzal a tudással rendelkeznek, ami akadályozza a gördülékeny együttműködést.
+
+### 1.2. Hibák és régi adatok kezelése
+A **hibák** és problémák jelenleg informális módon kerülnek rögzítésre, többnyire szóbeli bejelentések vagy rögtönzött jegyzetek formájában. Ez a módszer nem biztosít rendszerezett nyomonkövetést, így sokszor elveszik a fontos információ, és nem lehet pontosan visszakeresni a feladatok előzményeit. Archiválásra nincs hivatalos eljárás, ezért a régebbi hibák és feladatok gyakran nyomtalanul eltűnnek.
+
+A hiányosságok összefoglalva:
+- Nincs **egységes** archiválási folyamat
+- Hiányzik az **automatikus naplózás**
+- Nem tisztázottak a **felelősségi körök**
+- Az **adatkezelés átláthatatlansága** miatt a tapasztalatok nem épülnek be
+
+Ez a helyzet hosszú távon a vállalat működésének hatékonyságát csökkenti, és megnehezíti a minőségbiztosítási folyamatokat.
+
+### 1.3. Ellenőrzés és vezetői rálátás
+A munkavállalóknak naponta kézzel kell elkészíteniük az **összesítőket** a saját tevékenységükről, amelyeket a vezetők később manuálisan ellenőriznek. Ez az eljárás időigényes, lassú és nagy hibalehetőséget hordoz.
+
+- A vezetők csak **utólag** értesülnek a munkáról
+- Nehéz a feladatok **priorizálása** valós idejű adatok nélkül
+- A jelentések **pontossága** nagymértékben függ az alkalmazottak fegyelmétől
+- Az automatikus figyelmeztetések és **nyomonkövetés** hiánya miatt a határidők betartása bizonytalan
+
+Amennyiben a vezetők pontosabb képet szeretnének, személyes egyeztetésre kényszerülnek, ami időrabló. A jelenlegi helyzetben a rendszer nem biztosít teljes körű átláthatóságot, így a vezetői döntések sokszor nem kellően megalapozottak.
+
+
 ## 2. Megrendelői vízió (Vágyálom)
 ### 2.1 Áttekintés
 
