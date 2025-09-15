@@ -36,26 +36,49 @@ Amennyiben a vezetők pontosabb képet szeretnének, személyes egyeztetésre k�
 
 
 ## 2. Megrendelői vízió (Vágyálom)
-### 2.1 Áttekintés
 
-A SupplyMasters vágyálomrendszer központi célja, hogy a mindennapi munkaszervezést egyetlen egységes, jól kezelhető platformba foglalja. A rendszer biztosítja a folyamatos hozzáférést mind számítógépen, mind mobil eszközön, reszponzív és modern felhasználói élményt nyújtva. A megoldás segít abban, hogy a felhasználók átlássák saját és mások feladatait, ezzel gyorsítva a munkafolyamatokat és csökkentve az átfutási időt.
+### 2.1 Áttekintés
+A SupplyMasters vágyálomrendszer központi célja, hogy a mindennapi munkaszervezést
+egyetlen egységes, jól kezelhető platformba foglalja. A rendszer biztosítja a folyamatos
+hozzáférést mind számítógépen, mind mobil eszközön, reszponzív és modern felhasználói
+élményt nyújtva. A megoldás segít abban, hogy a felhasználók átlássák saját és mások
+feladatait, ezzel gyorsítva a munkafolyamatokat és csökkentve az átfutási időt.
 
 ### 2.2 Megrendelői vágyak
+A megrendelő elvárja, hogy minden feladat egy központi rendszerben legyen rögzítve,
+amely egyszerűen kereshető és szűrhető. Az új feladatok létrehozása, a meglévők
+módosítása és törlése alapfunkciónak számít. A feladatok kategorizálhatók, elláthatók
+címkékkel, és rendelhető hozzájuk prioritás, hogy a fontosabb teendők azonnal kiemelkedjenek.
+A vizuális megjelenítéshez Kanban tábla szolgál, amely Backlog → In Progress → Done
+oszlopokra tagolódik, lehetővé téve a feladatok könnyű mozgatását.
 
-A megrendelő elvárja, hogy minden feladat egy központi rendszerben legyen rögzítve, amely egyszerűen kereshető és szűrhető. Az új feladatok létrehozása, a meglévők módosítása és törlése alapfunkciónak számít. A feladatok kategorizálhatók, elláthatók címkékkel, és rendelhető hozzájuk prioritás, hogy a fontosabb teendők azonnal kiemelkedjenek.
-A vizuális megjelenítéshez Kanban tábla szolgál, amely Backlog → In Progress → Done oszlopokra tagolódik, lehetővé téve a feladatok könnyű mozgatását.
-A rendszer támogatja a többfelhasználós működést: a munkatársak, vezetők és adminisztrátorok eltérő jogosultsági szintekkel férhetnek hozzá a funkciókhoz. Automatikus értesítések tájékoztatják a résztvevőket a közelgő határidőkről, a státuszváltozásokról és a felelősök módosulásáról.
-Emellett fontos igény a riportok és kimutatások készítése, amelyek exportálhatók különböző formátumokba (pl. CSV, PDF). A felhasználói műveletek részletes naplózása átláthatóságot és visszakövethetőséget biztosít.
+A rendszer támogatja a többfelhasználós működést: a munkatársak, vezetők és
+adminisztrátorok eltérő jogosultsági szintekkel férhetnek hozzá a funkciókhoz.
+Automatikus értesítések tájékoztatják a résztvevőket a közelgő határidőkről, a
+státuszváltozásokról és a felelősök módosulásáról. Emellett fontos igény a riportok
+és kimutatások készítése, amelyek exportálhatók különböző formátumokba (pl. CSV, PDF).
+
+A felhasználói műveletek részletes naplózása átláthatóságot és visszakövethetőséget biztosít.
 
 ### 2.3 Nem-funkcionális vágyak
+A biztonság kiemelt szerepet kap: az adatok titkosítva kerülnek tárolásra, a hozzáférés
+pedig szerepkörökhöz kötötten valósul meg. Az alkalmazás felülete letisztult, intuitív,
+így a betanulási idő minimális. A teljesítmény elvárt szintje, hogy akár tízezer aktív
+feladat is kezelhető legyen késlekedés nélkül.
 
-A biztonság kiemelt szerepet kap: az adatok titkosítva kerülnek tárolásra, a hozzáférés pedig szerepkörökhöz kötötten valósul meg. Az alkalmazás felülete letisztult, intuitív, így a betanulási idő minimális.
-A teljesítmény elvárt szintje, hogy akár tízezer aktív feladat is kezelhető legyen késlekedés nélkül. A rendszer moduláris felépítésű, ezáltal a jövőben könnyen bővíthető további kiegészítőkkel, például naptárnézettel vagy fejlettebb riportkészítéssel. A megbízhatóság érdekében rendszeres adatmentés és visszaállítási lehetőség áll rendelkezésre.
+A rendszer moduláris felépítésű, ezáltal a jövőben könnyen bővíthető további
+kiegészítőkkel, például naptárnézettel vagy fejlettebb riportkészítéssel. A megbízhatóság
+érdekében rendszeres adatmentés és visszaállítási lehetőség áll rendelkezésre.
 
 ### 2.4 Elfogadási kritériumok
+A rendszer akkor tekinthető sikeresnek, ha a felhasználó képes új feladatot létrehozni,
+azt módosítani és törölni. A feladatok státusza mindig pontosan megjelenik, és az
+oszlopok közötti áthelyezés akadálymentesen működik.
 
-A rendszer akkor tekinthető sikeresnek, ha a felhasználó képes új feladatot létrehozni, azt módosítani és törölni. A feladatok státusza mindig pontosan megjelenik, és az oszlopok közötti áthelyezés akadálymentesen működik. Az értesítési funkció időben jelzi a fontos változásokat, míg a riportok exportálása hibátlanul lefut.
-Az adatoknak minden futtatás között meg kell őrződniük, és a teljesítménynek meg kell felelnie az előre rögzített elvárásoknak. Amennyiben ezek a feltételek teljesülnek, a vágyálomrendszer elfogadottnak tekinthető.
+Az értesítési funkció időben jelzi a fontos változásokat, míg a riportok exportálása
+hibátlanul lefut. Az adatoknak minden futtatás között meg kell őrződniük, és a
+teljesítménynek meg kell felelnie az előre rögzített elvárásoknak. Amennyiben ezek a
+feltételek teljesülnek, a vágyálomrendszer elfogadottnak tekinthető.
 
 ## 3. Igényelt üzleti folyamat
 
