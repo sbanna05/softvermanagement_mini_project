@@ -1,5 +1,35 @@
 # Funkcionális specifikáció – SupplyMasters Teendőlista alkalmazás
 
+## 3. Igényelt üzleti folyamat
+
+### 3.1. Feladatkezelés ###
+- A főmenüben megjelenik a *Napi feladataim* menüpont.
+    - Ez a felület **táblázatos** formában jelenik meg.
+    - **Főbb menüpontok:** *Cím*, *Leírás*, *Prioritás*, *Határidő*, *Állapot*, *Feladat felelőse*, *További csapattagok*
+- A dolgozó a *Backlog*, *Doing*, *Done* gombokkal jelölheti a feladatai állapotát.
+- A rendszer automatikusan értesíti a kijelölt felettest a feladat elvégzése esetén.
+- A feletteseknek jogosultságuk van a beosztotjaiknak feladatot kiadni a *Feladat kiadása* menüpontban.
+    - Itt meg kell adniuk a következő menüpontokat:
+        - *Cím*, *Leírás*, *Prioritás*, *Határidő*, *További dolgozók*
+- *Drag and drop* módszerrel ki lehet alakítani a feladatok prioritási sorrendjét.
+- A közeli lejárati határidős feladatok automatikus *Emlékeztető* üzenetet küldenek.
+    - Ennek beállításait az *Emlékeztető beállítása* menüpontban lehet módosítani:
+     -*Mennyivel előtte küldje*, *Szundi*
+
+### 3.2. Hibakezelés és archiválás ###
+- *Korábbi feladataim* menüpont segítségével könnyen vissza kereshetőek a már elvégzet feladatok:
+    - *Cím* illetve *Dátum* alapján
+- A *Kész* jelzésü feladatok **archiválhatóak**. Ezek később visszakereshetőek.
+- Mindenki számára elérhető a *Keresés* funkció de amíg a **dolgozók** csak a **saját** elvégzett feladataikat láttják, addig a **vezetők** minden **beosztottét** is.
+- Az *Archivált feladatok* menüpontban is lehet **keresni**:
+    - *Cím*, *Dátum*, *Dolgozó*, *Kijelölt felettes*, *Prioritás* alapján.
+
+### 3.3. Felettesi ellenőrzés ###
+- *Napi összesítő generálása* gombbal automatikus riport készíthető az aznapi haladásról.
+- A vezetők valós időben követhetik a dolgozók munkáját a *Dolgozói előrehaladás*.
+    - Ez a felület táblázatos formában jelenik meg az átláthatóság kedvéért
+
+
 ## Szerepkörök és jogosultságok
 
 A rendszer három felhasználói szerepkört különböztet meg: **CEO, részlegvezető és munkatárs**.
