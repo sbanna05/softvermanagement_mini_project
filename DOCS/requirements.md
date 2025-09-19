@@ -38,37 +38,36 @@ A rendszer nem biztosít átfogó átláthatóságot, így a menedzsment dönté
 ## 2. Megrendelői vízió (Vágyálom)
 
 ### 2.1 Áttekintés
-
-A SupplyMasters vágyálomrendszer célja, hogy a feladatkezelést hatékonyabbá, átláthatóbbá és biztonságosabbá tegye.
-Webes, reszponzív felület, mobilon és desktopon is használható.
+A SupplyMasters vágyálomrendszer célja, hogy a feladatkezelést hatékonyabbá,
+átláthatóbbá és biztonságosabbá tegye. Webes, reszponzív felület, mobilon és
+desktopon egyaránt használható.
 
 ### 2.2 Megrendelői vágyak
+A rendszer központi nyilvántartást biztosít az összes feladatról. Új feladat
+létrehozása, módosítása és törlése alapfunkció. Feladatok kategorizálhatók,
+címkézhetők, prioritásokkal elláthatók. A Kanban tábla Backlog → Doing → Done
+állapotokra tagolódik, lehetővé téve a feladatok könnyű mozgatását.
 
-Központi nyilvántartás az összes feladatról.
-Új feladat létrehozása, módosítása, törlése.
-Feladatok kategorizálása, címkézése és prioritások kezelése.
-Kanban tábla: Backlog → Doing → Done állapotok.
-Több felhasználó kezelése, jogosultságokkal.
-Automatikus értesítések határidőkről és felelős változásokról.
-Keresés és szűrés címke, határidő, státusz, felelős szerint.
-Riportok és exportálás (Markdown, CSV).
-Naplózás minden felhasználói műveletről.
+Többfelhasználós működés biztosított, eltérő jogosultsági szintekkel. Automatikus
+értesítések tájékoztatják a résztvevőket a határidőkről és a felelősök változásairól.
+Keresés és szűrés lehetséges címke, határidő, státusz és felelős szerint. Riportok
+készíthetők és exportálhatók (Markdown, CSV). Minden felhasználói művelet naplózásra
+kerül.
 
 ### 2.3 Nem-funkcionális vágyak
-
-Adatbiztonság: titkosított tárolás, jogosultság alapú hozzáférés.
-Intuitív, reszponzív felület, minimális betanulási idővel.
-Teljesítmény: akár 10.000 aktív feladat kezelése lassulás nélkül.
-Moduláris felépítés: könnyen bővíthető új funkciókkal (pl. naptár, riportok).
-Megbízhatóság: adatok mentése és visszaállítás lehetősége.
+Adatbiztonság: titkosított tárolás, jogosultság alapú hozzáférés. Az alkalmazás
+felülete intuitív és reszponzív, a betanulási idő minimális. Teljesítmény: akár 10.000
+aktív feladat kezelhető lassulás nélkül. Moduláris felépítés lehetővé teszi új funkciók
+hozzáadását (pl. naptárnézet, fejlettebb riportok). Megbízhatóság érdekében rendszeres
+adatmentés és visszaállítás áll rendelkezésre.
 
 ### 2.4 Elfogadási kritériumok
+A rendszer akkor tekinthető sikeresnek, ha a felhasználó képes új feladatot létrehozni,
+módosítani és törölni. A rendszer megjeleníti az összes feladatot és státuszát.
+Feladatok áthelyezése az oszlopok között hibamentesen működik. Értesítések és
+riportok helyesen működnek, az adatok minden futtatás között megőrződnek, és a
+teljesítmény megfelel az előírt elvárásoknak.
 
-Felhasználó képes új feladatot létrehozni, módosítani és törölni.
-Rendszer megjeleníti az összes feladatot és státuszát.
-Feladatok áthelyezése oszlopok között működik.
-Értesítések és riportok helyesen működnek.
-Adatok futások között megőrződnek, teljesítmény megfelel az elvárásoknak.
 
 
 ## 3. Jelenlegi üzleti folyamat

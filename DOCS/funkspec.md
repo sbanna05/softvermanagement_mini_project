@@ -36,56 +36,81 @@ Amennyiben a vezetők pontosabb képet szeretnének, személyes egyeztetésre k�
 
 
 ## 2. Megrendelői vízió (Vágyálom)
-### 2.1 Áttekintés
 
-A SupplyMasters vágyálomrendszer központi célja, hogy a mindennapi munkaszervezést egyetlen egységes, jól kezelhető platformba foglalja. A rendszer biztosítja a folyamatos hozzáférést mind számítógépen, mind mobil eszközön, reszponzív és modern felhasználói élményt nyújtva. A megoldás segít abban, hogy a felhasználók átlássák saját és mások feladatait, ezzel gyorsítva a munkafolyamatokat és csökkentve az átfutási időt.
+### 2.1 Áttekintés
+A SupplyMasters vágyálomrendszer központi célja, hogy a mindennapi munkaszervezést
+egyetlen egységes, jól kezelhető platformba foglalja. A rendszer biztosítja a folyamatos
+hozzáférést mind számítógépen, mind mobil eszközön, reszponzív és modern felhasználói
+élményt nyújtva. A megoldás segít abban, hogy a felhasználók átlássák saját és mások
+feladatait, ezzel gyorsítva a munkafolyamatokat és csökkentve az átfutási időt.
 
 ### 2.2 Megrendelői vágyak
+A megrendelő elvárja, hogy minden feladat egy központi rendszerben legyen rögzítve,
+amely egyszerűen kereshető és szűrhető. Az új feladatok létrehozása, a meglévők
+módosítása és törlése alapfunkciónak számít. A feladatok kategorizálhatók, elláthatók
+címkékkel, és rendelhető hozzájuk prioritás, hogy a fontosabb teendők azonnal kiemelkedjenek.
+A vizuális megjelenítéshez Kanban tábla szolgál, amely Backlog → In Progress → Done
+oszlopokra tagolódik, lehetővé téve a feladatok könnyű mozgatását.
 
-A megrendelő elvárja, hogy minden feladat egy központi rendszerben legyen rögzítve, amely egyszerűen kereshető és szűrhető. Az új feladatok létrehozása, a meglévők módosítása és törlése alapfunkciónak számít. A feladatok kategorizálhatók, elláthatók címkékkel, és rendelhető hozzájuk prioritás, hogy a fontosabb teendők azonnal kiemelkedjenek.
-A vizuális megjelenítéshez Kanban tábla szolgál, amely Backlog → In Progress → Done oszlopokra tagolódik, lehetővé téve a feladatok könnyű mozgatását.
-A rendszer támogatja a többfelhasználós működést: a munkatársak, vezetők és adminisztrátorok eltérő jogosultsági szintekkel férhetnek hozzá a funkciókhoz. Automatikus értesítések tájékoztatják a résztvevőket a közelgő határidőkről, a státuszváltozásokról és a felelősök módosulásáról.
-Emellett fontos igény a riportok és kimutatások készítése, amelyek exportálhatók különböző formátumokba (pl. CSV, PDF). A felhasználói műveletek részletes naplózása átláthatóságot és visszakövethetőséget biztosít.
+A rendszer támogatja a többfelhasználós működést: a munkatársak, vezetők és
+adminisztrátorok eltérő jogosultsági szintekkel férhetnek hozzá a funkciókhoz.
+Automatikus értesítések tájékoztatják a résztvevőket a közelgő határidőkről, a
+státuszváltozásokról és a felelősök módosulásáról. Emellett fontos igény a riportok
+és kimutatások készítése, amelyek exportálhatók különböző formátumokba (pl. CSV, PDF).
+
+A felhasználói műveletek részletes naplózása átláthatóságot és visszakövethetőséget biztosít.
 
 ### 2.3 Nem-funkcionális vágyak
+A biztonság kiemelt szerepet kap: az adatok titkosítva kerülnek tárolásra, a hozzáférés
+pedig szerepkörökhöz kötötten valósul meg. Az alkalmazás felülete letisztult, intuitív,
+így a betanulási idő minimális. A teljesítmény elvárt szintje, hogy akár tízezer aktív
+feladat is kezelhető legyen késlekedés nélkül.
 
-A biztonság kiemelt szerepet kap: az adatok titkosítva kerülnek tárolásra, a hozzáférés pedig szerepkörökhöz kötötten valósul meg. Az alkalmazás felülete letisztult, intuitív, így a betanulási idő minimális.
-A teljesítmény elvárt szintje, hogy akár tízezer aktív feladat is kezelhető legyen késlekedés nélkül. A rendszer moduláris felépítésű, ezáltal a jövőben könnyen bővíthető további kiegészítőkkel, például naptárnézettel vagy fejlettebb riportkészítéssel. A megbízhatóság érdekében rendszeres adatmentés és visszaállítási lehetőség áll rendelkezésre.
+A rendszer moduláris felépítésű, ezáltal a jövőben könnyen bővíthető további
+kiegészítőkkel, például naptárnézettel vagy fejlettebb riportkészítéssel. A megbízhatóság
+érdekében rendszeres adatmentés és visszaállítási lehetőség áll rendelkezésre.
 
 ### 2.4 Elfogadási kritériumok
+A rendszer akkor tekinthető sikeresnek, ha a felhasználó képes új feladatot létrehozni,
+azt módosítani és törölni. A feladatok státusza mindig pontosan megjelenik, és az
+oszlopok közötti áthelyezés akadálymentesen működik.
 
-A rendszer akkor tekinthető sikeresnek, ha a felhasználó képes új feladatot létrehozni, azt módosítani és törölni. A feladatok státusza mindig pontosan megjelenik, és az oszlopok közötti áthelyezés akadálymentesen működik. Az értesítési funkció időben jelzi a fontos változásokat, míg a riportok exportálása hibátlanul lefut.
-Az adatoknak minden futtatás között meg kell őrződniük, és a teljesítménynek meg kell felelnie az előre rögzített elvárásoknak. Amennyiben ezek a feltételek teljesülnek, a vágyálomrendszer elfogadottnak tekinthető.
+Az értesítési funkció időben jelzi a fontos változásokat, míg a riportok exportálása
+hibátlanul lefut. Az adatoknak minden futtatás között meg kell őrződniük, és a
+teljesítménynek meg kell felelnie az előre rögzített elvárásoknak. Amennyiben ezek a
+feltételek teljesülnek, a vágyálomrendszer elfogadottnak tekinthető.
 
 ## 3. Igényelt üzleti folyamat
 
 ### 3.1. Feladatkezelés ###
 
 - A főmenüben megjelenik a *Napi feladataim* menüpont.
-- Ez a felület **táblázatos** formában jelenik meg.
-- **Főbb menüpontok:** *Cím*, *Leírás*, *Prioritás*, *Határidő*, *Állapot*, *Feladat felelőse*, *További csapattagok*
-- A dolgozó a *Backlog*, *Doing*, *Done* gombokkal jelölheti a feladatai állapotát.
-- A rendszer automatikusan értesíti a kijelölt felettest a feladat elvégzése esetén.
-- A feletteseknek jogosultságuk van a beosztotjaiknak feladatot kiadni a *Feladat kiadása* menüpontban.
-    - Itt meg kell adniuk a következő menüpontokat:
-        - *Cím*, *Leírás*, *Prioritás*, *Határidő*, *További dolgozók*
 - *Drag and drop* módszerrel ki lehet alakítani a feladatok prioritási sorrendjét.
-- A közeli lejárati határidős feladatok automatikus *Emlékeztető* üzenetet küldenek.
-    - Ennek beállításait az *Emlékeztető beállítása* menüpontban lehet módosítani:
-     -*Mennyivel előtte küldje*, *Szundi*
+- A közeli lejárattal rendelkező feladatok esetén a rendszer automatikus *Emlékeztető* üzenetet küld.
+    - Ennek beállításait az *Emlékeztető beállítása* menüpontban lehet módosítani, mint például:
+     - *Mennyi idővel a határidő előtt küldje*
+     - *Szundi funkció*
 
 ### 3.2. Hibakezelés és archiválás ###
-- *Korábbi feladataim* menüpont segítségével könnyen vissza kereshetőek a már elvégzet feladatok:
+- *Korábbi feladataim* menüpont segítségével a dolgozó könnyen vissza keresheti a már elvégzet feladatait:
     - *Cím* illetve *Dátum* alapján
-- A *Kész* jelzésü feladatok **archiválhatóak**. Ezek később visszakereshetőek.
-- Mindenki számára elérhető a *Keresés* funkció de amíg a **dolgozók** csak a **saját** elvégzett feladataikat láttják, addig a **vezetők** minden **beosztottét** is.
+- A *Done* állapotú feladatok **archiválhatóak** az *Archiválás* gombbal. 
+- Az archivált feladatok később visszakereshetőek.
+- Mindenki számára elérhető a *Keresés* funkció csak más terjedelemben:
+    - a **dolgozók** csak a **saját** elvégzett feladataikat láttják
+    - a **vezetők** minden **beosztottét** is.
 - Az *Archivált feladatok* menüpontban is lehet **keresni**:
-    - *Cím*, *Dátum*, *Dolgozó*, *Kijelölt felettes*, *Prioritás* alapján.
+    - *Cím*
+    - *Dátum*
+    - *Dolgozó*
+    - *Kijelölt felettes*
+    - *Prioritás* alapján.
 
 ### 3.3. Felettesi ellenőrzés ###
 - *Napi összesítő generálása* gombbal automatikus riport készíthető az aznapi haladásról.
 - A vezetők valós időben követhetik a dolgozók munkáját a *Dolgozói előrehaladás*.
-    - Ez a felület táblázatos formában jelenik meg az átláthatóság kedvéért
+    - Ez a felület táblázatos formában jelenik meg az átláthatóság kedvéért.
+    - Kiemelt háttérrel jelennek meg azok a feladatok, amellyek túllépték a megadott *határidőt*.
 
 ## Szerepkörök és jogosultságok
 
