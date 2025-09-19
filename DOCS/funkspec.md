@@ -60,9 +60,10 @@ Az adatoknak minden futtatás között meg kell őrződniük, és a teljesítmé
 ## 3. Igényelt üzleti folyamat
 
 ### 3.1. Feladatkezelés ###
+
 - A főmenüben megjelenik a *Napi feladataim* menüpont.
-    - Ez a felület **táblázatos** formában jelenik meg.
-    - **Főbb menüpontok:** *Cím*, *Leírás*, *Prioritás*, *Határidő*, *Állapot*, *Feladat felelőse*, *További csapattagok*
+- Ez a felület **táblázatos** formában jelenik meg.
+- **Főbb menüpontok:** *Cím*, *Leírás*, *Prioritás*, *Határidő*, *Állapot*, *Feladat felelőse*, *További csapattagok*
 - A dolgozó a *Backlog*, *Doing*, *Done* gombokkal jelölheti a feladatai állapotát.
 - A rendszer automatikusan értesíti a kijelölt felettest a feladat elvégzése esetén.
 - A feletteseknek jogosultságuk van a beosztotjaiknak feladatot kiadni a *Feladat kiadása* menüpontban.
@@ -85,7 +86,6 @@ Az adatoknak minden futtatás között meg kell őrződniük, és a teljesítmé
 - *Napi összesítő generálása* gombbal automatikus riport készíthető az aznapi haladásról.
 - A vezetők valós időben követhetik a dolgozók munkáját a *Dolgozói előrehaladás*.
     - Ez a felület táblázatos formában jelenik meg az átláthatóság kedvéért
-
 
 ## Szerepkörök és jogosultságok
 
