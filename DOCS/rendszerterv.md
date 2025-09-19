@@ -20,8 +20,7 @@ A rendszer célja tehát nem csupán technológiai újítás, hanem egy szerveze
 
 Összességében a rendszer célja egy olyan rugalmas és bővíthető platform biztosítása, amely a jelenlegi igényeket kielégíti, ugyanakkor alapot teremt a jövőbeni fejlesztésekhez és bővítésekhez is.
 
-
-## 2. Projekt terv 
+## 2. Projekt terv
 
 A projekt célja egy központi feladatkezelő rendszer létrehozása, amely támogatja a dolgozók és vezetők közötti feladatkiosztást, a státuszkövetést és az átlátható riportkészítést. A fejlesztés egy nyolc hetes időszakra van ütemezve, és a csapat munkáját a meghatározott szerepkörök és felelősségi körök biztosítják.
 
@@ -43,7 +42,6 @@ A projekt kulcsfontosságú mérföldkövei közé tartozik a követelmény spec
 
 A projektterv tehát egyértelműen meghatározza a szerepköröket, az ütemezést és a célokat, biztosítva a fejlesztés átlátható és eredményes megvalósítását.
 
-
 ## 3. Üzleti folyamatok modellje
 
 ### 3.1 Üzleti szereplők
@@ -60,22 +58,94 @@ A kész feladatok automatikusan archiválódnak, így később könnyen visszake
 
 Az üzleti entitások közé tartozik maga a feladat, amely rendelkezik cím, leírás, határidő, státusz, prioritás, felelős és további csapattag mezőkkel. A felhasználók (dolgozó, felettes, adminisztrátor) a rendszer különböző jogosultsági szintjeivel férnek hozzá a funkciókhoz. A riportok az elvégzett feladatok összesítését tartalmazzák időszak, státusz és felelős szerint. Az archivált feladatok biztosítják a múltbeli tevékenységek visszakereshetőségét és a rendszer átláthatóságát.
 
-## Követelmények
+## 4. Követelmények
 
-## Funkcionális terv
+## 5. Funkcionális terv
 
-## Fizikai környezet
+## 6. Fizikai környezet
 
-## Absztrakt domain modell
+### 6.1 Platform
 
-## Architekturális terv
+- **Webes alkalmazás**, amely **desktop-first** kialakítással készül.  
+- A felület **reszponzív**, így:
+  - asztali gépen,
+  - tableten,
+  - és mobilon is kényelmesen használható.  
+- A felhasználók böngészőből (Chrome, Firefox, Edge) érik el → **nem igényel telepítést**.
 
-## Adatbázis terv
+---
 
-## Implementációs terv
+### 6.2 Backend (szerver)
 
-## Tesztterv
+- **Technológia**: Node.js + Express  
+- **Feladatai**:
+  - REST API biztosítása a frontend és az adatbázis között,
+  - feladatok létrehozása, módosítása, törlése, lekérdezése,
+  - felhasználók kezelése és jogosultság-ellenőrzés.  
+- **Kommunikáció**: HTTP protokollon keresztül, JSON formátumban  
+- **Futtatási környezet**:
+  - helyi gépen, Linux vagy Windows OS
+  - production környezetben VPS / felhő  
+- **Portok**:
+  - fejlesztés: `3000`
+  - production: `80` (HTTP), `443` (HTTPS)
 
-## Telepítési terv
+---
 
-## Karbantartási terv
+### 6.3 Frontend
+
+- **Technológia**: React + Vite + Bootstrap CSS
+- **Fejlesztési előnyök**:
+  - moduláris komponensrendszer,
+  - hot reload → gyors iteráció.  
+- **Fő komponensek**:
+  - `Dashboard` (áttekintő nézet),
+  - `TaskList` (feladatlista),
+  - `TaskItem` (feladat részletei),
+  - `Archive` (projektek),
+  - `UserList` (felhasználók).  
+- **API hívások**: Axios könyvtár segítségével → backend REST API-hoz kapcsolódik  
+- **Megjelenítés**:
+  - HTML + CSS alapú,
+  - reszponzív layout,
+  - Kanban tábla a feladatok vizualizálására (Backlog / Doing / Done oszlopok).
+
+---
+
+### 6.4 Adatbázis
+
+- **Technológia**: PostgreSQL
+- **Tárolt adatok**:
+  - `tasks` → (id, name, status, assignee, deadline, priority, tags)
+  - `users` → (id, name, role, email, password)
+  - `notifications` -> (id, task_id, user_id, timestamp, status)
+  - `archives` -> (id, task_id, date)
+- **Adatbiztonság**:
+  - minden adat titkosított formában érhető el,  
+  - jogosultság-alapú hozzáférés.  
+
+---
+
+### 6.5 Fejlesztői eszközök
+
+- **Fejlesztői környezet**: Visual Studio Code  
+- **Verziókezelés**: Git + GitHub repository  
+- **Függőségkezelő**: Node Package Manager (npm)  
+- **Adatbázis-kezelő eszköz**: pgAdmin (PostgreSQL adminisztrációhoz)
+- **Opcionális**:
+  - Docker → fejlesztési és teszt környezet elkülönítése,
+  - ESLint + Prettier → kódminőség biztosítása.
+
+## 7. Absztrakt domain modell
+
+## 8. Architekturális terv
+
+## 9. Adatbázis terv
+
+## 10. Implementációs terv
+
+## 11. Tesztterv
+
+## 12. Telepítési terv
+
+## 13. Karbantartási terv
