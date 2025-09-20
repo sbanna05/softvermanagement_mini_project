@@ -140,6 +140,56 @@ Az üzleti entitások közé tartozik maga a feladat, amely rendelkezik cím, le
 
 ## 8. Architekturális terv
 
+## 8.1 Tervezési minta
+A rendszer **háromrétegű architektúrára** épül: prezentációs réteg (frontend), alkalmazáslogika réteg (backend), és adatkezelési réteg (adatbázis). A rétegek közötti kommunikáció szigorúan definiált interfészeken keresztül zajlik (REST API).
+
+## 8.2 Frontend (React + Vite)
+- A felhasználói felületet **React** keretrendszer és **Vite** build tool biztosítja.  
+- A frontend kizárólag a REST API-n keresztül éri el az adatokat.  
+- Reszponzív kialakítás: desktop, tablet és mobil támogatás.  
+- Az autentikációs tokenek (JWT) biztonságos tárolása böngészőben (HttpOnly cookie).  
+- Feladatok és projektek vizuális kezelése Kanban táblán keresztül.
+
+## 8.3 Backend (Node.js + Express)
+- A szerveroldali logika **Node.js** környezetben, **Express** keretrendszerrel valósul meg.  
+- A REST API JSON formátumban kommunikál a klienssel.  
+- Middleware réteg biztosítja a hitelesítést, jogosultságkezelést, naplózást.  
+- Az üzleti logika réteg külön modulokban valósul meg (feladat, felhasználó, riport).  
+- Hibakezelés központosítva történik, szabványos HTTP státuszkódokkal.
+
+## 8.4 Adatbázis (PostgreSQL)
+- Relációs szerkezet: **feladatok**, **projektek**, **felhasználók** táblák.  
+- Egy feladat kapcsolódik egy projekthez és egy felelős felhasználóhoz.  
+- Indexek a határidő, státusz és prioritás oszlopokra a gyors szűrés érdekében.  
+- Adatkonzisztencia biztosítása tranzakciókkal.  
+- Rendszeres automatikus mentés VPS szinten (cron job + dump).
+
+## 8.5 Biztonsági funkciók
+- Autentikáció: **JWT alapú bejelentkezés**, refresh token mechanizmussal.  
+- Jogosultságkezelés: szerepkör alapú (CEO, vezető, munkatárs).  
+- HTTPS kötelező a kliens és szerver közötti kommunikációban.  
+- Adatok titkosítása adatbázisban (pl. jelszavak bcrypt-tel).  
+- API rate limiting a brute-force támadások ellen.
+
+## 8.6 Rendszer bővíthetősége
+- Moduláris API felépítés: új végpontok különálló modulokként integrálhatók.  
+- Konfigurációs fájlok (pl. `.env`) segítségével az alkalmazás környezettől független.  
+- Naptárintegráció vagy további riport modul később egyszerűen hozzáadható.  
+- Verziózott API (pl. `/api/v1/`), amely lehetővé teszi a kompatibilitás megőrzését.  
+
+## 8.7 Deploy és skálázás
+- Az alkalmazás egy **VPS**-en futtatva, **Docker konténerekben** van elkülönítve.  
+- Egy konténer kezeli a frontend buildet (statikus fájlok Nginx-en), egy a backendet, és egy a PostgreSQL adatbázist.  
+- Skálázás kezdetben vertikálisan (erősebb VPS), később horizontálisan (több backend konténer load balancerrel).  
+- Monitoring: alap szinten loggyűjtés (pl. PM2, Docker logs), később Prometheus integráció.
+
+## 8.8 Változások kezelése
+- Verziókezelés: Git + GitHub.  
+- Minden új funkció külön branchben fejlesztve, code review után merge.  
+- CI/CD pipeline beállítható a jövőben (pl. GitHub Actions), automatikus teszteléssel és deployjal.
+
+Ez az architekturális terv biztosítja a **rugalmasságot, bővíthetőséget és biztonságot**, valamint megfelel a nem-funkcionális követelményeknek.
+
 ## 9. Adatbázis terv
 
 ## 10. Implementációs terv
