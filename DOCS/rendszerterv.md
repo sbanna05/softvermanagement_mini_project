@@ -60,6 +60,57 @@ Az üzleti entitások közé tartozik maga a feladat, amely rendelkezik cím, le
 
 ## 4. Követelmények
 
+### 4.1 Funkcionális követelmények
+
+A rendszernek az alábbi alapfunkciókat kell biztosítania:
+
+- **Feladatkezelés**:
+
+  - Új feladat létrehozása (cím, leírás, határidő, prioritás, felelős).
+  - Feladatok státuszának kezelése (Backlog → Doing → Done).
+  - Feladat módosítása és archiválása.
+
+- **Felhasználókezelés**:
+
+  - Regisztráció és bejelentkezés.
+  - Jogosultsági szintek:
+    - CEO
+    - részlegvezető
+    - munkatárs.
+  - Minden felhasználó csak a saját feladatait láthassa/módosíthassa.
+
+- **Értesítések**:
+  - Határidő közeledtének automatikus jelzése.
+  - Feladat státuszváltozásról értesítés a felettesnek.
+
+- **Riportok**:
+
+  - CEO számára havi riport a feladatok teljesítéséről.
+  - Export lehetőség:
+    - CSV
+    - Markdown formátumban.
+
+- **Keresés és szűrés**:
+  - Kulcsszó alapú keresés.
+  - Szűrés:
+    - határidő
+    - státusz
+    - prioritás
+    - címke alapján.
+
+### 4.2 Nem-funkcionális követelmények
+
+- **Teljesítmény**: a rendszer legalább 10 000 aktív feladatot tudjon kezelni lassulás nélkül.
+- **Biztonság**: jelszavak titkosított (bcrypt) tárolása, HTTPS protokoll használata.
+
+- **Elérhetőség**: a rendszer 24/7 elérhető legyen, minimális karbantartási leállásokkal.
+
+- **Használhatóság**: reszponzív design → asztali, mobil és tablet támogatás.
+
+- **Bővíthetőség**: új modulok (pl. naptár, e-mail értesítések) könnyen integrálhatók legyenek.
+
+- **Naplózás**: minden felhasználói művelet rögzítve legyen, visszakövethetőséget biztosítva.
+
 ## 5. Funkcionális terv
 
 ## 6. Fizikai környezet
@@ -247,5 +298,3 @@ Minden módosítást verziószámmal és rövid changeloggal dokumentálunk. A f
 
 ### 13.7. Ütemezett karbantartás
 A karbantartási műveleteket előre ütemezetten végezzük, a felhasználók számára kommunikált időpontban. Cél, hogy a szolgáltatás-kiesés minimális legyen, és az éles frissítések mindig tesztelt, stabil verziók alapján történjenek.
-
-
