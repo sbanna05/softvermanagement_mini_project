@@ -115,6 +115,8 @@ A rendszernek az alábbi alapfunkciókat kell biztosítania:
 
 ## 6. Fizikai környezet
 
+<img width="1536" height="1024" alt="fiz" src="https://github.com/user-attachments/assets/3c378b1b-180a-444f-bcb3-fafd867439a8" />
+
 ### 6.1 Platform
 
 - **Webes alkalmazás**, amely **desktop-first** kialakítással készül.  
@@ -276,6 +278,9 @@ Ez az architekturális terv biztosítja a **rugalmasságot, bővíthetőséget �
 
 Moduláris, tesztelt és könnyen üzemeltethető megvalósítás.
 Későbbi bővíthetőség.
+
+#### 10.2 Minta ábra a file implementációról (nem feltétlenül végleges)
+<img width="492" height="714" alt="model" src="https://github.com/user-attachments/assets/e171d8a5-999c-4de1-b259-58ce38931216" />
 
 ### 10.3 Backend: részletek
 
