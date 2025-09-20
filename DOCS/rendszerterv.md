@@ -138,6 +138,31 @@ Az üzleti entitások közé tartozik maga a feladat, amely rendelkezik cím, le
 
 ## 7. Absztrakt domain modell
 
+### 7.1. Domainspecifikáció és fogalmak
+A rendszer központi fogalmai a **Felhasználó**, a **Projekt** és a **Feladat**.  
+- **Felhasználó**: az alkalmazás regisztrált tagja, aki projekteket hozhat létre, feladatokat kezelhet, valamint jogosultságokkal rendelkezik.  
+- **Projekt**: egy összefüggő munkafolyamat vagy cél, amelyhez több feladat és több felhasználó kapcsolódhat.  
+- **Feladat (Task)**: egy konkrét teendő, amely státuszt, határidőt, prioritást és felelőst tartalmaz.  
+
+Kiegészítő fogalmak:  
+- **Komment**: a feladatokhoz fűzött rövid szöveges visszajelzés.  
+- **Jogosultság**: a felhasználókhoz rendelt hozzáférési szintek (admin, tag, vendég).  
+
+### 7.2. Absztrakt komponensek és kapcsolataik
+A rendszer fő komponensei a következők:  
+- **Frontend komponens**: a React alapú felhasználói felület, amely biztosítja a vizuális interakciót.  
+- **Backend komponens**: az Express API, amely összekapcsolja a frontend kéréseit az adatbázissal.  
+- **Adatkezelő komponens**: a PostgreSQL adatbázis, amely a felhasználókat, projekteket és feladatokat tárolja.  
+
+Kapcsolatok:  
+- Egy **Felhasználó** több **Projektben** részt vehet.  
+- Egy **Projekt** több **Feladatot** tartalmaz.  
+- Egy **Feladat** egy **Felelőshöz (Felhasználóhoz)** kapcsolódik.  
+- Egy **Felhasználó** több **Kommentet** írhat, amelyek feladatokhoz kötődnek.  
+
+### 7.3. Példa
+Például: a “SupplyMasters” projektben három felhasználó dolgozik. Az egyik felhasználó (projektvezető) létrehoz egy új feladatot “Funkcionális specifikáció kidolgozása” néven, és hozzárendeli egy másik felhasználóhoz. A feladathoz határidő és kommentek is tartoznak.
+
 ## 8. Architekturális terv
 
 ### 8.1 Tervezési minta
