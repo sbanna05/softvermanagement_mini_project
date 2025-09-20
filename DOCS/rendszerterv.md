@@ -60,6 +60,57 @@ Az üzleti entitások közé tartozik maga a feladat, amely rendelkezik cím, le
 
 ## 4. Követelmények
 
+### 4.1 Funkcionális követelmények
+
+A rendszernek az alábbi alapfunkciókat kell biztosítania:
+
+- **Feladatkezelés**:
+
+  - Új feladat létrehozása (cím, leírás, határidő, prioritás, felelős).
+  - Feladatok státuszának kezelése (Backlog → Doing → Done).
+  - Feladat módosítása és archiválása.
+
+- **Felhasználókezelés**:
+
+  - Regisztráció és bejelentkezés.
+  - Jogosultsági szintek:
+    - CEO
+    - részlegvezető
+    - munkatárs.
+  - Minden felhasználó csak a saját feladatait láthassa/módosíthassa.
+
+- **Értesítések**:
+  - Határidő közeledtének automatikus jelzése.
+  - Feladat státuszváltozásról értesítés a felettesnek.
+
+- **Riportok**:
+
+  - CEO számára havi riport a feladatok teljesítéséről.
+  - Export lehetőség:
+    - CSV
+    - Markdown formátumban.
+
+- **Keresés és szűrés**:
+  - Kulcsszó alapú keresés.
+  - Szűrés:
+    - határidő
+    - státusz
+    - prioritás
+    - címke alapján.
+
+### 4.2 Nem-funkcionális követelmények
+
+- **Teljesítmény**: a rendszer legalább 10 000 aktív feladatot tudjon kezelni lassulás nélkül.
+- **Biztonság**: jelszavak titkosított (bcrypt) tárolása, HTTPS protokoll használata.
+
+- **Elérhetőség**: a rendszer 24/7 elérhető legyen, minimális karbantartási leállásokkal.
+
+- **Használhatóság**: reszponzív design → asztali, mobil és tablet támogatás.
+
+- **Bővíthetőség**: új modulok (pl. naptár, e-mail értesítések) könnyen integrálhatók legyenek.
+
+- **Naplózás**: minden felhasználói művelet rögzítve legyen, visszakövethetőséget biztosítva.
+
 ## 5. Funkcionális terv
 
 ## 6. Fizikai környezet
@@ -203,12 +254,14 @@ A rendszer **háromrétegű architektúrára** épül: prezentációs réteg (fr
 - Verziózott API (pl. `/api/v1/`), amely lehetővé teszi a kompatibilitás megőrzését.  
 
 ### 8.7 Deploy és skálázás
+
 - Az alkalmazás egy **VPS**-en futtatva, **Docker konténerekben** van elkülönítve.  
 - Egy konténer kezeli a frontend buildet (statikus fájlok Nginx-en), egy a backendet, és egy a PostgreSQL adatbázist.  
 - Skálázás kezdetben vertikálisan (erősebb VPS), később horizontálisan (több backend konténer load balancerrel).  
 - Monitoring: alap szinten loggyűjtés (pl. PM2, Docker logs), később Prometheus integráció.
 
 ### 8.8 Változások kezelése
+
 - Verziókezelés: Git + GitHub.  
 - Minden új funkció külön branchben fejlesztve, code review után merge.  
 - CI/CD pipeline beállítható a jövőben (pl. GitHub Actions), automatikus teszteléssel és deployjal.
@@ -219,6 +272,177 @@ Ez az architekturális terv biztosítja a **rugalmasságot, bővíthetőséget �
 
 ## 10. Implementációs terv
 
+### 10.1 Cél
+
+Moduláris, tesztelt és könnyen üzemeltethető megvalósítás.
+Későbbi bővíthetőség.
+
+### 10.3 Backend: részletek
+
+#### **Technológiák**
+
+- Node.js (LTS), Express
+- PostgreSQL (`pg` csomag)
+- Környezeti változók: `.env` (DB_URI, JWT_SECRET, PORT, NODE_ENV)
+
+#### **Fő modulok**
+
+- `routes/*` – végpontok és beviteli (request) validációk.
+- `controllers/*` – kérés feldolgozás, hibakezelés.
+- `services/*` – üzleti logika (TaskService, UserService, NotificationService).
+- `models/*` – DB műveletek (SQL lekérdezések).
+- `middlewares/auth.js` – JWT ellenőrzés, role-check middleware.
+- `middlewares/errorHandler.js` – központi hiba formázás.
+
+#### **Példa REST végpontok**
+
+- `GET /api/v1/tasks` — lista (query param: status, assignee, dueDate, tags)
+- `POST /api/v1/tasks` — új feladat (body validáció)
+- `GET /api/v1/tasks/:id`
+- `PUT /api/v1/tasks/:id` — módosítás (csak jogosult user)
+- `DELETE /api/v1/tasks/:id` — admin művelet
+- `POST /api/v1/users/login` — token kiadás
+- `GET /api/v1/notifications` — felhasználói értesítések
+
+#### **Validáció** és **Loggin**
+
+---
+
+### 10.4 Adatbázis
+
+#### **Táblák (alap)**
+
+- `users` (id, name, email, password_hash, rolet)
+- `tasks` (id, title, description, priority, due_date, status, task_owner_id (FK users.id), created_at, updated_at)
+- `notifications` (id, task_id FK, user_id FK, timestamp, status)
+- `archives` (id, task_id FK, archived_at)
+
+#### **Adatbiztonság**
+
+- jelszavak `bcrypt`-tel hashelve
+- DB connection string titkos `.env`-ben
+- szükség esetén DB-level encryption, backups (cron dump)
+
+---
+
+### 10.5 Frontend: részletek
+
+#### **Technológiák**
+
+- React + Vite
+- Axios az API hívásokhoz
+- Styling: Bootstrap CSS
+- State: lokálisan `useState` / `useReducer`, globálisan `useContext` az Auth és user state-hez
+
+#### **Fő komponensek**
+
+- `KanbanBoard` – három oszlop (Backlog, Doing, Done) + drag-and-drop (react-beautiful-dnd)
+- `TaskCard` – egy feladat megjelenítése
+- `TaskForm` – létrehozás / szerkesztés modal
+- `Dashboard` – statisztikák, rövid listák
+- `AuthContext` – token tárolás, automatikus axios interceptor a token küldéséhez
+
+#### **Fejlesztési javaslat**
+
+- API wrapper fájl (`src/api/tasks.js`) → minden fetch/logika itt
+- Form validation: `react-hook-form` + `yup` a validációhoz
+
+---
+
+### 10.6 Tesztelés
+
+#### **Unit tesztek**
+
+- Backend: Jest + Supertest (service és controller unit + API integration)
+- Frontend: Jest + React Testing Library (komponensek, formok)
+
+#### **Integráció**
+
+- Kisebb integrációs tesztek: endpointok működése mockolt DB-vel vagy teszt DB-vel.
+
+#### **E2E (opcionális)**
+
+- Cypress: kritikus user flow-k (login, task create → move → complete → report)
+
+#### **Teszt coverage**
+
+- Minimum: fontos service függvényekre 70%
+
+---
+
+### 10.7 CI / CD javaslat
+
+#### **CI (GitHub Actions)**
+
+- On push/pull_request to `main` vagy `develop`:
+  - install dependencies
+  - lint (ESLint)
+  - run unit tests (backend + frontend)
+  - build frontend
+- PR esetén automata tesztek futtatása + status check
+
+#### **CD**
+
+- Prod deploy: manual approval + GitHub Action build → push docker image registry-be (Docker Hub / GHCR) → VPS-en pull & restart vagy Kubernetes (ha később)
+
+---
+
+### 10.8 Telepítés (deployment)
+
+#### **Fejlesztési környezet**
+
+- Lokálisan `npm run dev` (backend port 3000, frontend port 5173)
+- Docker-compose fájl fejlesztéshez: backend, frontend (build), db
+
+#### **Backup / Restore**
+
+- napi DB dump (cron job) → tárolás SFTP / felhő
+- heti restore teszt
+
+---
+
+### 10.9 Biztonság & jogosultságok (implementációs részletek)
+
+- **Auth**:
+  - bejelentkezés JWT tokennel (short lived access token + refresh token)
+  - token store: httpOnly cookie a XSS elkerülésére
+- **Role based access**:
+  - middleware `checkRole(role)` a route-ok védelmére
+  - minden write műveletnél (PUT/DELETE) ellenőrizni az owner/role jogosultságot
+- **Rate limit**: `express-rate-limit` alapvédelem
+- **Input sanitization**: `helmet`, `xss-clean`, `express-validator`
+
+---
+
+### 10.10 Kockázatok és enyhítésük
+
+- **Időzítés csúszása** → MVP funkcionalitás priorizálása (core: task CRUD + auth)
+- **Adatvesztés** → rendszeres backup + restore tesztek
+- **Biztonsági rések** → dependency audit (npm audit), havi security scan
+
+---
+
+### 10.12 Példák / snippet-ek (gyors referencia)
+
+#### **pool.js (db kapcsolat)**
+
+```javascript
+const { Pool } = require('pg');
+const pool = new Pool({ connectionString: process.env.DATABASE_URL });
+module.exports = pool;
+```
+
+#### **express route**
+
+```js
+const express = require('express');
+const router = express.Router();
+const taskController = require('../controllers/taskController');
+router.get('/', taskController.list);
+router.post('/', taskController.create);
+module.exports = router;
+```
+
 ## 11. Tesztterv
 
 ## 12. Telepítési terv
@@ -228,24 +452,29 @@ Ez az architekturális terv biztosítja a **rugalmasságot, bővíthetőséget �
 A rendszer karbantartási terve biztosítja, hogy a React + Vite frontend, a Node.js + Express backend és a PostgreSQL adatbázis hosszú távon megbízhatóan működjön a VPS környezetben. A karbantartás célja a stabilitás, a teljesítmény és a biztonság fenntartása, valamint a felhasználói igényekhez való folyamatos alkalmazkodás.
 
 ### 13.1. Folyamatos üzemeltetés
+
 A szerver folyamatos monitorozása alapvető feladat. Ide tartozik a CPU, memória és hálózati terhelés figyelése, valamint az adatbázis teljesítményének követése. A logok rendszeres elemzése segít a potenciális hibák korai felismerésében.
 
 ### 13.2. Hibajavítás (Corrective Maintenance)
+
 A felhasználók által jelzett hibák priorizálása és kijavítása elsődleges szempont. A javításokat először tesztkörnyezetben végezzük el, ahol automata unit- és integrációs tesztek futnak. Csak sikeres validáció után történhet az éles rendszer frissítése.
 
 ### 13.3. Technológiai frissítések (Adaptive Maintenance)
+
 A frontend (React, Vite) és a backend (Node.js, Express) keretrendszerek, valamint a PostgreSQL adatbázis rendszeres frissítése szükséges a kompatibilitás és biztonság fenntartásához. A függőségeket (npm csomagok) havi szinten auditáljuk és szükség esetén frissítjük.
 
 ### 13.4. Funkcióbővítés (Perfective Maintenance)
+
 A karbantartás része az új funkciók bevezetése és a meglévők optimalizálása. Példák: új riportkészítő modul, naptár nézet, felhasználói jogosultságkezelés finomítása. A fejlesztéseket iteratív módon, felhasználói visszajelzések alapján vezetjük be.
 
 ### 13.5. Megelőző intézkedések (Preventive Maintenance)
+
 A lehetséges biztonsági rések feltárása és zárása kiemelt szempont. Rendszeresen futtatunk sérülékenység-vizsgálatokat, és naprakészen tartjuk a TLS tanúsítványokat. Az adatbázisról automatikus biztonsági mentések készülnek, amelyeket heti szinten tesztelünk visszaállítással.
 
 ### 13.6. Dokumentáció és verziókezelés
+
 Minden módosítást verziószámmal és rövid changeloggal dokumentálunk. A fejlesztői csapat Git alapú workflow-t használ, amely biztosítja az átláthatóságot és a rollback lehetőségét. Az üzemeltetési lépések külön karbantartási naplóban kerülnek rögzítésre.
 
 ### 13.7. Ütemezett karbantartás
+
 A karbantartási műveleteket előre ütemezetten végezzük, a felhasználók számára kommunikált időpontban. Cél, hogy a szolgáltatás-kiesés minimális legyen, és az éles frissítések mindig tesztelt, stabil verziók alapján történjenek.
-
-
