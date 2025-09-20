@@ -140,50 +140,50 @@ Az üzleti entitások közé tartozik maga a feladat, amely rendelkezik cím, le
 
 ## 8. Architekturális terv
 
-## 8.1 Tervezési minta
+### 8.1 Tervezési minta
 A rendszer **háromrétegű architektúrára** épül: prezentációs réteg (frontend), alkalmazáslogika réteg (backend), és adatkezelési réteg (adatbázis). A rétegek közötti kommunikáció szigorúan definiált interfészeken keresztül zajlik (REST API).
 
-## 8.2 Frontend (React + Vite)
+### 8.2 Frontend (React + Vite)
 - A felhasználói felületet **React** keretrendszer és **Vite** build tool biztosítja.  
 - A frontend kizárólag a REST API-n keresztül éri el az adatokat.  
 - Reszponzív kialakítás: desktop, tablet és mobil támogatás.  
 - Az autentikációs tokenek (JWT) biztonságos tárolása böngészőben (HttpOnly cookie).  
 - Feladatok és projektek vizuális kezelése Kanban táblán keresztül.
 
-## 8.3 Backend (Node.js + Express)
+### 8.3 Backend (Node.js + Express)
 - A szerveroldali logika **Node.js** környezetben, **Express** keretrendszerrel valósul meg.  
 - A REST API JSON formátumban kommunikál a klienssel.  
 - Middleware réteg biztosítja a hitelesítést, jogosultságkezelést, naplózást.  
 - Az üzleti logika réteg külön modulokban valósul meg (feladat, felhasználó, riport).  
 - Hibakezelés központosítva történik, szabványos HTTP státuszkódokkal.
 
-## 8.4 Adatbázis (PostgreSQL)
+### 8.4 Adatbázis (PostgreSQL)
 - Relációs szerkezet: **feladatok**, **projektek**, **felhasználók** táblák.  
 - Egy feladat kapcsolódik egy projekthez és egy felelős felhasználóhoz.  
 - Indexek a határidő, státusz és prioritás oszlopokra a gyors szűrés érdekében.  
 - Adatkonzisztencia biztosítása tranzakciókkal.  
 - Rendszeres automatikus mentés VPS szinten (cron job + dump).
 
-## 8.5 Biztonsági funkciók
+### 8.5 Biztonsági funkciók
 - Autentikáció: **JWT alapú bejelentkezés**, refresh token mechanizmussal.  
 - Jogosultságkezelés: szerepkör alapú (CEO, vezető, munkatárs).  
 - HTTPS kötelező a kliens és szerver közötti kommunikációban.  
 - Adatok titkosítása adatbázisban (pl. jelszavak bcrypt-tel).  
 - API rate limiting a brute-force támadások ellen.
 
-## 8.6 Rendszer bővíthetősége
+### 8.6 Rendszer bővíthetősége
 - Moduláris API felépítés: új végpontok különálló modulokként integrálhatók.  
 - Konfigurációs fájlok (pl. `.env`) segítségével az alkalmazás környezettől független.  
 - Naptárintegráció vagy további riport modul később egyszerűen hozzáadható.  
 - Verziózott API (pl. `/api/v1/`), amely lehetővé teszi a kompatibilitás megőrzését.  
 
-## 8.7 Deploy és skálázás
+### 8.7 Deploy és skálázás
 - Az alkalmazás egy **VPS**-en futtatva, **Docker konténerekben** van elkülönítve.  
 - Egy konténer kezeli a frontend buildet (statikus fájlok Nginx-en), egy a backendet, és egy a PostgreSQL adatbázist.  
 - Skálázás kezdetben vertikálisan (erősebb VPS), később horizontálisan (több backend konténer load balancerrel).  
 - Monitoring: alap szinten loggyűjtés (pl. PM2, Docker logs), később Prometheus integráció.
 
-## 8.8 Változások kezelése
+### 8.8 Változások kezelése
 - Verziókezelés: Git + GitHub.  
 - Minden új funkció külön branchben fejlesztve, code review után merge.  
 - CI/CD pipeline beállítható a jövőben (pl. GitHub Actions), automatikus teszteléssel és deployjal.
@@ -199,3 +199,28 @@ Ez az architekturális terv biztosítja a **rugalmasságot, bővíthetőséget �
 ## 12. Telepítési terv
 
 ## 13. Karbantartási terv
+
+A rendszer karbantartási terve biztosítja, hogy a React + Vite frontend, a Node.js + Express backend és a PostgreSQL adatbázis hosszú távon megbízhatóan működjön a VPS környezetben. A karbantartás célja a stabilitás, a teljesítmény és a biztonság fenntartása, valamint a felhasználói igényekhez való folyamatos alkalmazkodás.
+
+### 13.1. Folyamatos üzemeltetés
+A szerver folyamatos monitorozása alapvető feladat. Ide tartozik a CPU, memória és hálózati terhelés figyelése, valamint az adatbázis teljesítményének követése. A logok rendszeres elemzése segít a potenciális hibák korai felismerésében.
+
+### 13.2. Hibajavítás (Corrective Maintenance)
+A felhasználók által jelzett hibák priorizálása és kijavítása elsődleges szempont. A javításokat először tesztkörnyezetben végezzük el, ahol automata unit- és integrációs tesztek futnak. Csak sikeres validáció után történhet az éles rendszer frissítése.
+
+### 13.3. Technológiai frissítések (Adaptive Maintenance)
+A frontend (React, Vite) és a backend (Node.js, Express) keretrendszerek, valamint a PostgreSQL adatbázis rendszeres frissítése szükséges a kompatibilitás és biztonság fenntartásához. A függőségeket (npm csomagok) havi szinten auditáljuk és szükség esetén frissítjük.
+
+### 13.4. Funkcióbővítés (Perfective Maintenance)
+A karbantartás része az új funkciók bevezetése és a meglévők optimalizálása. Példák: új riportkészítő modul, naptár nézet, felhasználói jogosultságkezelés finomítása. A fejlesztéseket iteratív módon, felhasználói visszajelzések alapján vezetjük be.
+
+### 13.5. Megelőző intézkedések (Preventive Maintenance)
+A lehetséges biztonsági rések feltárása és zárása kiemelt szempont. Rendszeresen futtatunk sérülékenység-vizsgálatokat, és naprakészen tartjuk a TLS tanúsítványokat. Az adatbázisról automatikus biztonsági mentések készülnek, amelyeket heti szinten tesztelünk visszaállítással.
+
+### 13.6. Dokumentáció és verziókezelés
+Minden módosítást verziószámmal és rövid changeloggal dokumentálunk. A fejlesztői csapat Git alapú workflow-t használ, amely biztosítja az átláthatóságot és a rollback lehetőségét. Az üzemeltetési lépések külön karbantartási naplóban kerülnek rögzítésre.
+
+### 13.7. Ütemezett karbantartás
+A karbantartási műveleteket előre ütemezetten végezzük, a felhasználók számára kommunikált időpontban. Cél, hogy a szolgáltatás-kiesés minimális legyen, és az éles frissítések mindig tesztelt, stabil verziók alapján történjenek.
+
+
