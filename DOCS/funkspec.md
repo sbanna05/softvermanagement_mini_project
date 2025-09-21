@@ -61,7 +61,7 @@ Az adatoknak minden futtatás között meg kell őrződniük, és a teljesítmé
 
 ### 3.1. Feladatkezelés ###
 - A főmenüben megjelenik a *Napi feladataim* menüpont.
-    - Ez a felület **táblázatos** formában jelenik meg.
+- - Ez a felület **táblázatos** formában jelenik meg.
     - **Főbb menüpontok:** *Cím*, *Leírás*, *Prioritás*, *Határidő*, *Állapot*, *Feladat felelőse*, *További csapattagok*
 - A dolgozó a *Backlog*, *Doing*, *Done* gombokkal jelölheti a feladatai állapotát.
 - A rendszer automatikusan értesíti a kijelölt felettest a feladat elvégzése esetén.
