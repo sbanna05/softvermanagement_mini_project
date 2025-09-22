@@ -273,6 +273,8 @@ Kapcsolatok:
 ### 7.3. Példa
 Például: a “SupplyMasters” projektben három felhasználó dolgozik. Az egyik felhasználó (projektvezető) létrehoz egy új feladatot “Funkcionális specifikáció kidolgozása” néven, és hozzárendeli egy másik felhasználóhoz. A feladathoz határidő és kommentek is tartoznak.
 
+<img width="1249" height="648" alt="felhasznasznaloijogkor" src="https://github.com/user-attachments/assets/7b85c792-42f2-4de5-bdce-2e8e37dc6f6c" />
+
 ## 8. Architekturális terv
 
 ### 8.1 Tervezési minta
@@ -619,3 +621,5 @@ Minden módosítást verziószámmal és rövid changeloggal dokumentálunk. A f
 ### 12.7. Ütemezett karbantartás
 
 A karbantartási műveleteket előre ütemezetten végezzük, a felhasználók számára kommunikált időpontban. Cél, hogy a szolgáltatás-kiesés minimális legyen, és az éles frissítések mindig tesztelt, stabil verziók alapján történjenek.
+
+<img width="1028" height="760" alt="Screenshot 2025-09-22 142449" src="https://github.com/user-attachments/assets/9d7f35cf-a691-4194-bb3c-e8856b742e83" />
