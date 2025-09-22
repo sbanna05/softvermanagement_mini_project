@@ -329,7 +329,7 @@ Ez az architekturális terv biztosítja a **rugalmasságot, bővíthetőséget �
 
 ## 9. Adatbázis terv
 
-<img width="727" height="552" alt="database" src="https://github.com/user-attachments/assets/09daf3fa-8042-4abe-89e3-9f904c446f37" />
+<img width="719" height="551" alt="database drawio" src="https://github.com/user-attachments/assets/650554db-bc20-45f4-a8ce-b95576d784d0" />
 
 ### 9.1 Users
 - A rendszer felhasználóinak adatait tartalmazza.
