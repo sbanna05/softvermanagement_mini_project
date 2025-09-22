@@ -133,6 +133,9 @@ A rendszernek az alábbi alapfunkciókat kell biztosítania:
 - **Naplózás**: minden felhasználói művelet rögzítve legyen, visszakövethetőséget biztosítva.
 
 ## 5. Funkcionális terv
+
+<img width="1280" height="832" alt="SupplyMaster to-do list képernyőkép" src="https://github.com/user-attachments/assets/d685de69-38e0-4ef0-986b-b7c58b4faa4e" />
+
 ### 5.1 Alapfunkciók
 - ***Feladat kiosztása***: új feladatok kiosztása a *Cím*, *Határidő*, *Felelős* adatok megadásával.
 - ***Feladatlista nézet***: a feladatok táblázatos formában jelennek meg.
