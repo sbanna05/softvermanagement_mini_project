@@ -35,6 +35,9 @@ Nem cél a rendszerrel a **teljes HR-folyamat kiváltása**, így például a b�
 - **Önállóság és felelősségvállalás**
 - **Prioritások** beállítása, a legfontosabb teendőkre fókuszálás
 
+  ![szereplok_funkciok](https://github.com/user-attachments/assets/7a09164d-5137-402f-aa0d-577fb76daf67)
+
+
 ### 1.7 Szervezeti előnyök
 
 A rendszer célja nem csupán **technológiai újítás**, hanem **szervezeti kultúrát támogató eszköz** is.
@@ -78,6 +81,8 @@ A kész feladatok automatikusan archiválódnak, így később könnyen visszake
 ### 3.3 Üzleti entitások
 
 Az üzleti entitások közé tartozik maga a **feladat**, amely rendelkezik cím, leírás, határidő, státusz, prioritás, felelős és további csapattag mezőkkel. A **felhasználók** (dolgozó, felettes, adminisztrátor) a rendszer különböző jogosultsági szintjeivel férnek hozzá a funkciókhoz. A **riportok** az elvégzett feladatok összesítését tartalmazzák időszak, státusz és felelős szerint. Az **archivált feladatok** biztosítják a múltbeli tevékenységek visszakereshetőségét és a rendszer átláthatóságát.
+
+![uzleti_folyamat](https://github.com/user-attachments/assets/7ea547cb-798e-449c-ada0-4cb8b585c279)
 
 ## 4. Követelmények
 
