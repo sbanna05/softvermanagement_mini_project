@@ -320,6 +320,64 @@ A rendszer **háromrétegű architektúrára** épül: prezentációs réteg (fr
 Ez az architekturális terv biztosítja a **rugalmasságot, bővíthetőséget és biztonságot**, valamint megfelel a nem-funkcionális követelményeknek.
 
 ## 9. Adatbázis terv
+### 9.1 Users
+- A rendszer felhasználóinak adatait tartalmazza.
+- ***Mezők***: 
+  - user_id **int, elsődleges kulcs**
+  - name    **string**
+  - email   **string, egyedi**
+  - role    **enum osztály: CEO, részlegvezető, dolgozó**
+- ***Kapcsolatok***:
+  - Egy felhasználónak több feladata is lehet. **1:N**
+  - Egy felhasználó több feladat felelőse is lehet. **1:N**
+  - Egy felhasználó több értesítést is kaphat. **1:N**
+
+### 9.2 Tasks
+- A rendszerben folyamatban lévő feladatokat tárolja.
+- ***Mezők***: 
+  - task_id         **int, elsődleges kulcs**
+  - title           **string**
+  - description     **string**
+  - priority        **enum osztály: alacsony, közepes, magas**
+  - deadline        **dátum**
+  - status          **enum osztály: backlog, doing, done**
+  - task_owner_id   **int, külső kulcs**
+- ***Kapcsolatok***:
+  - Egy feladat archiválódik. **1:1**
+  - Egy feladathoz több felhasználó is hozzárendelhető. **1:N**
+  - Egy feladathoz egy értesítés tartozik. **1:1**
+
+### 9.3 Assignees
+- Kapcsolótábla, amely átláthatóbbá teszi a *users*-*tasks* táblák kapcsolatát.
+- ***Mezők***: 
+  - (task_id,user_id)   **int, összetett elsődleges kulcs**
+  - task_id             **int, külső kulcs**
+  - user_id             **int, külső kulcs**
+  - assigned_at         **dátum**
+- ***Kapcsolatok***:
+  - Több rekord tartozhat több felhasználóhoz. **N:1**
+  - Több rekord tartozhat több feladathoz. **N:1**
+
+### 9.4 Archives
+- Az archivált feladatokat és annak időpontját tárolja.
+- ***Mezők***: 
+  - archive_id   **int, elsődleges kulcs**
+  - task_id      **int, külső kulcs**
+  - archived_at  **dátum**
+- ***Kapcsolatok***:
+  - Egy archív egy feladathoz tartozik. **1:1**
+
+### 9.4 Notifications
+- Az adott feladatokhoz tartozó értesítéseket tárolja.
+- ***Mezők***: 
+  - notification_id   **int, elsődleges kulcs**
+  - task_id           **int, külső kulcs**
+  - user_id           **int, külső kulcs**
+  - timestamp         **dátum**
+  - type            **enum osztály: emlékeztető, figyelmeztető, lejárt**
+- ***Kapcsolatok***:
+  - Egy értesítéshez több felhasználó tartozhat. **N:1**
+  - Egy feladathoz egy értesítés tartozik. **1:1**
 
 ## 10. Implementációs terv
 
