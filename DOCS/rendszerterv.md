@@ -323,6 +323,9 @@ A rendszer **háromrétegű architektúrára** épül: prezentációs réteg (fr
 Ez az architekturális terv biztosítja a **rugalmasságot, bővíthetőséget és biztonságot**, valamint megfelel a nem-funkcionális követelményeknek.
 
 ## 9. Adatbázis terv
+
+<img width="727" height="552" alt="database" src="https://github.com/user-attachments/assets/09daf3fa-8042-4abe-89e3-9f904c446f37" />
+
 ### 9.1 Users
 - A rendszer felhasználóinak adatait tartalmazza.
 - ***Mezők***: 
