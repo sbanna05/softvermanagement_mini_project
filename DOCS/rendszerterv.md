@@ -139,7 +139,7 @@ A rendszernek az alábbi alapfunkciókat kell biztosítania:
 
 ## 5. Funkcionális terv
 
-<img width="1280" height="832" alt="SupplyMaster to-do list képernyőkép" src="https://github.com/user-attachments/assets/d685de69-38e0-4ef0-986b-b7c58b4faa4e" />
+<img width="1280" height="832" alt="Képernyőkép" src="https://github.com/user-attachments/assets/86418845-8781-4941-8a49-df71a3ab6996" />
 
 ### 5.1 Alapfunkciók
 - ***Feladat kiosztása***: új feladatok kiosztása a *Cím*, *Határidő*, *Felelős* adatok megadásával.
