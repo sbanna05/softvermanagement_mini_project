@@ -1,28 +1,25 @@
-// frontend/src/api/tasks.js
-import axios from "axios";
+import { supabase } from "./supabaseClient.js";
 
-// Alap axios instance
-const api = axios.create({
-  baseURL: "http://localhost:3000/api", // backend szerver
-});
-
-// Feladatokhoz kapcsolódó API hívások
 export const getTasks = async () => {
-  const res = await api.get("/tasks");
-  return res.data;
+  const { data, error } = await supabase.from("tasks").select("*").order("task_id");
+  if (error) throw error;
+  return data;
 };
 
 export const createTask = async (taskData) => {
-  const res = await api.post("/tasks", taskData);
-  return res.data;
+  const { data, error } = await supabase.from("tasks").insert([taskData]).select();
+  if (error) throw error;
+  return data[0];
 };
 
 export const updateTask = async (id, updates) => {
-  const res = await api.put(`/tasks/${id}`, updates);
-  return res.data;
+  const { data, error } = await supabase.from("tasks").update(updates).eq("id", id).select();
+  if (error) throw error;
+  return data[0];
 };
 
 export const deleteTask = async (id) => {
-  const res = await api.delete(`/tasks/${id}`);
-  return res.data;
+  const { error } = await supabase.from("tasks").delete().eq("id", id);
+  if (error) throw error;
+  return { success: true };
 };
