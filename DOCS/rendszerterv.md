@@ -139,7 +139,7 @@ A rendszernek az alábbi alapfunkciókat kell biztosítania:
 
 ## 5. Funkcionális terv
 
-<img width="1280" height="832" alt="SupplyMaster to-do list képernyőkép" src="https://github.com/user-attachments/assets/d685de69-38e0-4ef0-986b-b7c58b4faa4e" />
+<img width="1280" height="832" alt="Képernyőkép" src="https://github.com/user-attachments/assets/86418845-8781-4941-8a49-df71a3ab6996" />
 
 ### 5.1 Alapfunkciók
 - ***Feladat kiosztása***: új feladatok kiosztása a *Cím*, *Határidő*, *Felelős* adatok megadásával.
@@ -272,6 +272,8 @@ Kapcsolatok:
 
 ### 7.3. Példa
 Például: a “SupplyMasters” projektben három felhasználó dolgozik. Az egyik felhasználó (projektvezető) létrehoz egy új feladatot “Funkcionális specifikáció kidolgozása” néven, és hozzárendeli egy másik felhasználóhoz. A feladathoz határidő és kommentek is tartoznak.
+
+<img width="1249" height="648" alt="felhasznasznaloijogkor" src="https://github.com/user-attachments/assets/7b85c792-42f2-4de5-bdce-2e8e37dc6f6c" />
 
 ## 8. Architekturális terv
 
@@ -567,37 +569,57 @@ module.exports = router;
 ```
 
 ## 11. Tesztterv
+### 11.1 Funkcionális tesztek
+- Feladat létrehozása, szerkesztése, törlése.
+- Feladat állapotának változtatása.
+- Keresés megfelelő működése.
+- Értesítések időben jelezzenek.
+- Felhasználói szerepkörök a megfelelő hatáskörön belül működnek.
 
-## 12. Telepítési terv
+### 11.2 UI/UX tesztek
+- Könnyen használható különféle képernyő méret esetén is.
+- Láthatóak-e a beosztottak interakciói.
+- Könnyen kezelhető-e a felület, megfelelő ellrendezés biztosítása.
 
-## 13. Karbantartási terv
+### 11.3 Biztonsági tesztek
+- Jogosultság megfelelő kezelése.
+- Rosszindulatú SQL inputok kezelése.
+
+### 11.4 Terheléses tesztek
+- Hány felhasználót bír el egyszerre a rendszer.
+- Lassul-e, ha túl sok feladat van folyamatban.
+- Mennyire gyors a keresés.
+
+## 12. Karbantartási terv
 
 A rendszer karbantartási terve biztosítja, hogy a React + Vite frontend, a Node.js + Express backend és a PostgreSQL adatbázis hosszú távon megbízhatóan működjön a VPS környezetben. A karbantartás célja a stabilitás, a teljesítmény és a biztonság fenntartása, valamint a felhasználói igényekhez való folyamatos alkalmazkodás.
 
-### 13.1. Folyamatos üzemeltetés
+### 12.1. Folyamatos üzemeltetés
 
 A szerver folyamatos monitorozása alapvető feladat. Ide tartozik a CPU, memória és hálózati terhelés figyelése, valamint az adatbázis teljesítményének követése. A logok rendszeres elemzése segít a potenciális hibák korai felismerésében.
 
-### 13.2. Hibajavítás (Corrective Maintenance)
+### 12.2. Hibajavítás (Corrective Maintenance)
 
 A felhasználók által jelzett hibák priorizálása és kijavítása elsődleges szempont. A javításokat először tesztkörnyezetben végezzük el, ahol automata unit- és integrációs tesztek futnak. Csak sikeres validáció után történhet az éles rendszer frissítése.
 
-### 13.3. Technológiai frissítések (Adaptive Maintenance)
+### 12.3. Technológiai frissítések (Adaptive Maintenance)
 
 A frontend (React, Vite) és a backend (Node.js, Express) keretrendszerek, valamint a PostgreSQL adatbázis rendszeres frissítése szükséges a kompatibilitás és biztonság fenntartásához. A függőségeket (npm csomagok) havi szinten auditáljuk és szükség esetén frissítjük.
 
-### 13.4. Funkcióbővítés (Perfective Maintenance)
+### 12.4. Funkcióbővítés (Perfective Maintenance)
 
 A karbantartás része az új funkciók bevezetése és a meglévők optimalizálása. Példák: új riportkészítő modul, naptár nézet, felhasználói jogosultságkezelés finomítása. A fejlesztéseket iteratív módon, felhasználói visszajelzések alapján vezetjük be.
 
-### 13.5. Megelőző intézkedések (Preventive Maintenance)
+### 12.5. Megelőző intézkedések (Preventive Maintenance)
 
 A lehetséges biztonsági rések feltárása és zárása kiemelt szempont. Rendszeresen futtatunk sérülékenység-vizsgálatokat, és naprakészen tartjuk a TLS tanúsítványokat. Az adatbázisról automatikus biztonsági mentések készülnek, amelyeket heti szinten tesztelünk visszaállítással.
 
-### 13.6. Dokumentáció és verziókezelés
+### 12.6. Dokumentáció és verziókezelés
 
 Minden módosítást verziószámmal és rövid changeloggal dokumentálunk. A fejlesztői csapat Git alapú workflow-t használ, amely biztosítja az átláthatóságot és a rollback lehetőségét. Az üzemeltetési lépések külön karbantartási naplóban kerülnek rögzítésre.
 
-### 13.7. Ütemezett karbantartás
+### 12.7. Ütemezett karbantartás
 
 A karbantartási műveleteket előre ütemezetten végezzük, a felhasználók számára kommunikált időpontban. Cél, hogy a szolgáltatás-kiesés minimális legyen, és az éles frissítések mindig tesztelt, stabil verziók alapján történjenek.
+
+<img width="1028" height="760" alt="Screenshot 2025-09-22 142449" src="https://github.com/user-attachments/assets/9d7f35cf-a691-4194-bb3c-e8856b742e83" />
