@@ -1,14 +1,22 @@
 import { useEffect, useState } from "react";
-import { getTasks, getUsers } from "./api/tasks.js"; // vagy külön users.js
+import { getTasks, getUsers, archiveTask, deleteTask } from "./api/tasks.js";
 
+import "./App.css";
+import Sidebar from "./components/SideBar.jsx";
 import TaskTable from "./components/TaskTable.jsx";
+import ArchivedTasksTable from "./components/ArchivedTasksTable.jsx";
+import NewTaskForm from "./components/NewTaskForm.jsx";
 
 function App() {
   const [tasks, setTasks] = useState([]);
-  const [currentUser, setCurrentUser] = useState({ user_id: "b68fa1a3-ef03-4ec4-8776-71cbf71b5858", name: "Teszt Elek" }); // teszt felhasználó
   const [users, setUsers] = useState([]);
+  const [currentUser, setCurrentUser] = useState({
+    user_id: "b68fa1a3-ef03-4ec4-8776-71cbf71b5858",
+    name: "Teszt Elek"
+  });
+  const [activeView, setActiveView] = useState("tasks"); // <- új state
 
-   useEffect(() => {
+  useEffect(() => {
     const fetchData = async () => {
       try {
         const tasksData = await getTasks();
@@ -22,35 +30,57 @@ function App() {
     fetchData();
   }, []);
 
-  // Szűrés a bejelentkezett felhasználóra
   const myTasks = tasks
-    .filter(task => task.task_owner_id === currentUser.user_id)
-    .map(task => {
-      // Feloldjuk a user_id-t névre
-      const owner = users.find(user => user.user_id === task.task_owner_id);
+    .filter((task) => task.task_owner_id === currentUser.user_id)
+    .map((task) => {
+      const owner = users.find((u) => u.user_id === task.task_owner_id);
       return {
         ...task,
         assigned_to: owner?.name || "Unassigned"
       };
     });
 
+  const handleDelete = async (taskId) => {
+    await deleteTask(taskId);
+    setTasks((prev) => prev.filter((t) => t.task_id !== taskId));
+    alert("Feladat törölve!")
+  }
+  const handleArchive = async (taskId) => {
+    await archiveTask(taskId);
+    alert("Feladat archiválva!");
+  }
+  const handleTaskAdded = (newTask) => {
+    setTasks((prev) => [...prev, newTask]);
+  };
+
   return (
-    <div style={{ padding: "2rem", fontFamily: "sans-serif" }}>
-      <h2>Üdvözöllek, {currentUser.name}!</h2>
+    <div className="d-flex">
+      {/* Sidebar átadjuk a state settert */}
+      <Sidebar currentUser={currentUser} setActiveView={setActiveView} />
 
-      <section style={{ marginTop: "1rem", float: "left", width: "30%" }}>
-        <h3>Napi feladataim:</h3>
-        <ul>
-          {tasks.map(task => (
-            <li key={task.task_id}>{task.title}</li>
-          ))}
-        </ul>
-      </section>
+      <main className="flex-grow-1 p-4 content-area">
+        {activeView === "tasks" && (
+          <>
+            <h2 className="mb-4">Napi feladataim</h2>
+            <TaskTable
+              tasks={myTasks}
+              onDelete={handleDelete}
+              onArchive={handleArchive}
+            />
+          </>
+        )}
 
-      <section style={{ marginTop: "2rem", float: "right", width: "70%" }}>
-        <h3>Napi feladataim</h3>
-        <TaskTable tasks={myTasks} />
-      </section>
+        {activeView === "archived" && (
+          <>
+            <h2 className="mb-4">Archivált feladatok</h2>
+            <ArchivedTasksTable userId={currentUser.user_id} />
+          </>
+        )}
+
+        {activeView === "progress" && <h2>Dolgozói előrehaladás (hamarosan...)</h2>}
+        {activeView === "create" && <NewTaskForm onTaskAdded={handleTaskAdded}/>}
+        {activeView === "reminders" && <h2>Emlékeztetők (hamarosan...)</h2>}
+      </main>
     </div>
   );
 }

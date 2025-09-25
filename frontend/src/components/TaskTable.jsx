@@ -1,32 +1,68 @@
-function TaskTable({ tasks }) {
+import {useState} from 'react'
+
+function TaskTable({ tasks, onDelete, onArchive }) {
+  const [menu, setMenu] = useState({ visible: false, x: 0, y: 0, taskId: null });
+
+  const handleContextMenu = (e, taskId) => {
+    e.preventDefault();
+    setMenu({ visible: true, x: e.pageX, y: e.pageY, taskId });
+  };
+
+  const handleClose = () => setMenu({ ...menu, visible: false });
+
   return (
-    <table style={{ borderCollapse: "collapse", width: "100%", marginTop: "1rem" }}>
-      <thead>
-        <tr>
-          <th style={thStyle}>Cím</th>
-          <th style={thStyle}>Prioritás</th>
-          <th style={thStyle}>Határidő</th>
-          <th style={thStyle}>Állapot</th>
-          <th style={thStyle}>Feladat felelőse</th>
-        </tr>
-      </thead>
-      <tbody>
-        {tasks.map((task) => (
-          <tr key={task.task_id}>
-            <td style={tdStyle}>{task.title}</td>
-            <td style={tdStyle}>{task.priority}</td>
-            <td style={tdStyle}>{task.deadline?.slice(0, 10)}</td>
-            <td style={tdStyle}>{task.status}</td>
-            <td style={tdStyle}>{task.assigned_to || "Unassigned"}</td>
-          
+    <div onClick={handleClose}>
+      <table className="table table-borderless">
+        <thead>
+          <tr>
+            <th>Cím</th>
+            <th>Prioritás</th>
+            <th>Határidő</th>
+            <th>Állapot</th>
+            <th>Felelős</th>
+            <th>Tagok</th>
           </tr>
-        ))}
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          {tasks.map((task) => (
+            <tr
+              key={task.task_id}
+              onContextMenu={(e) => handleContextMenu(e, task.task_id)}
+            >
+              <td>{task.title}</td>
+              <td>{task.priority}</td>
+              <td>{task.deadline}</td>
+              <td>{task.status}</td>
+              <td>{task.assigned_to}</td>
+              <td>{task.members}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+
+      {menu.visible && (
+        <ul
+          className="context-menu"
+          style={{
+            position: "absolute",
+            top: menu.y,
+            left: menu.x,
+            background: "white",
+            border: "1px solid #ccc",
+            listStyle: "none",
+            padding: "0.5rem",
+            borderRadius: "8px",
+            boxShadow: "0 2px 6px rgba(0,0,0,0.15)",
+            zIndex: 1000,
+          }}
+        >
+          <li onClick={() => { onArchive(menu.taskId); handleClose(); }}>Archiválás</li>
+          <li onClick={() => { alert("Szerkesztés folyamatban..."); handleClose(); }}>Szerkesztés</li>
+          <li style={{ color: "red" }} onClick={() => { onDelete(menu.taskId); handleClose(); }}>Törlés</li>
+        </ul>
+      )}
+    </div>
   );
 }
 
-const thStyle = { border: "1px solid #ccc", padding: "0.5rem", background: "#f0f0f0" };
-const tdStyle = { border: "1px solid #ccc", padding: "0.5rem" };
-
-export default TaskTable;
+export default TaskTable
