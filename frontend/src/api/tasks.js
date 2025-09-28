@@ -48,7 +48,7 @@ export const assignTaskToUser = async (taskId, userId) => {
 export const markTaskComplete = async (taskId, isComplete) => {
   const { data, error } = await supabase
     .from("tasks")
-    .update({ status: isComplete ? "Done" : "Under Review" })
+    .update({ status: isComplete ? "done" : "under_review" })
     .eq("task_id", taskId)
     .select();
   if (error) throw error;

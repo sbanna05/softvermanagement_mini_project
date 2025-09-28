@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
 import { createTask, getUsers } from "../api/tasks.js";
 
-function NewTaskForm({ onTaskAdded }) {
+function NewTaskForm({ onTaskAdded, currentUser }) {
   const [title, setTitle] = useState("");
   const [priority, setPriority] = useState("közepes");
   const [description, setDescription] = useState("");
   const [deadline, setDeadline] = useState("");
   const [status, setStatus] = useState("backlog");
-  const [assignee, setAssignee] = useState("");
+  const [assignee, setAssignee] = useState(currentUser.user_id || "");
 
   const [users, setUsers] = useState([]);
 

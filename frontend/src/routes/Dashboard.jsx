@@ -69,6 +69,7 @@ function Dashboard() {
             <h2 className="mb-4">Napi feladataim</h2>
             <TaskTable
               tasks={myTasks}
+              setTasks={setTasks}
               onDelete={handleDelete}
               onArchive={handleArchive}
             />
@@ -82,7 +83,7 @@ function Dashboard() {
           </>
         )}
 
-        {activeView === "create" && <NewTaskForm onTaskAdded={handleTaskAdded}/>}
+        {activeView === "create" && <NewTaskForm onTaskAdded={handleTaskAdded} currentUser={currentUser}/>}
         {/*activeView === "progress" && <h2>Dolgozói előrehaladás (hamarosan...)</h2>}
         {activeView === "reminders" && <h2>Emlékeztetők (hamarosan...)</h2>*/}
       </main>

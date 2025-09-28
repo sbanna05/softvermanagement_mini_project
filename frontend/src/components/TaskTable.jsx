@@ -57,13 +57,16 @@ function TaskTable({ tasks, setTasks, onDelete, onArchive }) {
                     <button
                       className="btn btn-outline-success"
                       onClick={async () => {
-                        const updated = await markTaskComplete(
+                        await markTaskComplete(
                           task.task_id,
                           task.status.toLowerCase() === "done" ? false : true
                         );
+
                         setTasks((prev) =>
                           prev.map((t) =>
-                            t.task_id === task.task_id ? updated : t
+                            t.task_id === task.task_id
+                              ? { ...t, status: t.status.toLowerCase() === "done" ? "Pending" : "done" }
+                              : t
                           )
                         );
                       }}
