@@ -30,19 +30,38 @@ export const addUser = async (userData) => {
 };
 
 export const getUsers = async () => {
-  const { data, error } = await supabase.from("users").select("*").order("user_id", { ascending: true });
+  const { data, error } = await supabase
+    .from("users")
+    .select("*")
+    .order("user_id", { ascending: true });
+
   if (error) throw error;
-  return data;
+  return data || [];
 };
 
-export const assignTaskToUser = async (taskId, userId) => {
-  const { data, error } = await supabase
-    .from("tasks")
-    .update({ assigned_to: userId })
-    .eq("task_id", taskId)
-    .select().single();
+export const getArchivedTasks = async (userId = null) => {
+  let query = supabase
+    .from("archived_tasks_view")
+    .select("*")
+    .order("archived_at", { ascending: false });
+
+  if (userId) {
+    const { data: user, error: userError } = await supabase
+      .from("users")
+      .select("name")
+      .eq("user_id", userId)
+      .maybeSingle();
+
+    if (userError) throw userError;
+    if (!user) return []; // nincs ilyen user, visszaüres tömb
+
+    query = query.eq("owner_name", user.name);
+  }
+
+  const { data, error } = await query;
   if (error) throw error;
-  return data;
+
+  return data || []; // üres tömb, ha nincs találat
 };
 
 export const markTaskComplete = async (taskId, isComplete) => {
@@ -66,6 +85,7 @@ export const archiveTask = async (taskId) => {
   return data;
 };
 
+/*
 export const getArchivedTasks = async (userId = null) => {
   let query = supabase
     .from("archived_tasks_view")
@@ -89,5 +109,5 @@ export const getArchivedTasks = async (userId = null) => {
   if (error) throw error;
   return data;
 };
-
+*/
 

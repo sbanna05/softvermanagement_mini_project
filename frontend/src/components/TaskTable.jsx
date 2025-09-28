@@ -127,4 +127,5 @@ function TaskTable({ tasks, setTasks, onDelete, onArchive }) {
   );
 }
 
+
 export default TaskTable;
