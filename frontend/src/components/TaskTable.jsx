@@ -1,7 +1,13 @@
-import {useState} from 'react'
+import { useState } from "react";
+import { markTaskComplete } from "../api/tasks";
 
-function TaskTable({ tasks, onDelete, onArchive }) {
-  const [menu, setMenu] = useState({ visible: false, x: 0, y: 0, taskId: null });
+function TaskTable({ tasks, setTasks, onDelete, onArchive }) {
+  const [menu, setMenu] = useState({
+    visible: false,
+    x: 0,
+    y: 0,
+    taskId: null,
+  });
 
   const handleContextMenu = (e, taskId) => {
     e.preventDefault();
@@ -21,23 +27,54 @@ function TaskTable({ tasks, onDelete, onArchive }) {
             <th>Állapot</th>
             <th>Felelős</th>
             <th>Tagok</th>
+            <th>Befejezve</th>
           </tr>
         </thead>
         <tbody>
-          {tasks.map((task) => (
-            <tr
-              key={task.task_id}
-              onContextMenu={(e) => handleContextMenu(e, task.task_id)}
-            >
-              <td>{task.title}</td>
-              <td>{task.priority}</td>
-              <td>{task.deadline}</td>
-              <td>{task.status}</td>
-              <td>{task.assigned_to}</td>
-              <td>{task.members}</td>
-            </tr>
-          ))}
-        </tbody>
+            {tasks.map((task) => {
+              const deadlineFormatted = task.deadline
+                ? new Date(task.deadline).toLocaleString("sv-SG", {
+                    year: "numeric",
+                    month: "2-digit",
+                    day: "2-digit",
+                    hour: "2-digit",
+                    minute: "2-digit",
+                  })
+                : "Nincs";
+
+              return (
+                <tr
+                  key={task.task_id}
+                  onContextMenu={(e) => handleContextMenu(e, task.task_id)}
+                >
+                  <td>{task.title}</td>
+                  <td>{task.priority}</td>
+                  <td>{deadlineFormatted}</td>
+                  <td>{task.status}</td>
+                  <td>{task.assigned_to}</td>
+                  <td>{task.members || "Nincs"}</td>
+                  <td>
+                    <button
+                      className="btn btn-outline-success"
+                      onClick={async () => {
+                        const updated = await markTaskComplete(
+                          task.task_id,
+                          task.status.toLowerCase() === "done" ? false : true
+                        );
+                        setTasks((prev) =>
+                          prev.map((t) =>
+                            t.task_id === task.task_id ? updated : t
+                          )
+                        );
+                      }}
+                    >
+                      Kész
+                    </button>
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
       </table>
 
       {menu.visible && (
@@ -56,13 +93,35 @@ function TaskTable({ tasks, onDelete, onArchive }) {
             zIndex: 1000,
           }}
         >
-          <li onClick={() => { onArchive(menu.taskId); handleClose(); }}>Archiválás</li>
-          <li onClick={() => { alert("Szerkesztés folyamatban..."); handleClose(); }}>Szerkesztés</li>
-          <li style={{ color: "red" }} onClick={() => { onDelete(menu.taskId); handleClose(); }}>Törlés</li>
+          <li
+            onClick={() => {
+              onArchive(menu.taskId);
+              handleClose();
+            }}
+          >
+            Archiválás
+          </li>
+          <li
+            onClick={() => {
+              alert("Szerkesztés folyamatban...");
+              handleClose();
+            }}
+          >
+            Szerkesztés
+          </li>
+          <li
+            style={{ color: "red" }}
+            onClick={() => {
+              onDelete(menu.taskId);
+              handleClose();
+            }}
+          >
+            Törlés
+          </li>
         </ul>
       )}
     </div>
   );
 }
 
-export default TaskTable
+export default TaskTable;

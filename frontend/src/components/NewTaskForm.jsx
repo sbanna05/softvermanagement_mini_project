@@ -4,7 +4,7 @@ import { createTask, getUsers } from "../api/tasks.js";
 function NewTaskForm({ onTaskAdded }) {
   const [title, setTitle] = useState("");
   const [priority, setPriority] = useState("közepes");
-  const [description, setDescription] = useState("")
+  const [description, setDescription] = useState("");
   const [deadline, setDeadline] = useState("");
   const [status, setStatus] = useState("backlog");
   const [assignee, setAssignee] = useState("");
@@ -38,21 +38,13 @@ function NewTaskForm({ onTaskAdded }) {
       // reset form
       setTitle("");
       setPriority("közepes");
-      setDescription("")
+      setDescription("");
       setDeadline("");
       setStatus("backlog");
       setAssignee("");
     } catch (err) {
       console.error("Hiba task létrehozásakor:", err);
     }
-  };
-
-  const handleMemberChange = (e) => {
-    const value = Array.from(
-      e.target.selectedOptions,
-      (option) => option.value
-    );
-    setMembers(value);
   };
 
   return (
@@ -118,20 +110,22 @@ function NewTaskForm({ onTaskAdded }) {
       </div>
 
       <div className="mb-2">
-        <label>Feladat felelőse:</label>
-        <select
-          value={assignee}
-          onChange={(e) => setAssignee(e.target.value)}
-          className="form-select"
-          required
-        >
-          <option value="">-- Válassz felhasználót --</option>
-          {users.map((u) => (
-            <option key={u.user_id} value={u.user_id}>
-              {u.name}
-            </option>
-          ))}
-        </select>
+        <label>
+          Feladat felelőse:
+          <select
+            value={assignee}
+            onChange={(e) => setAssignee(e.target.value)}
+            className="form-select"
+            required
+          >
+            <option value="">-- Válassz felhasználót --</option>
+            {users.map((u) => (
+              <option key={u.user_id} value={u.user_id}>
+                {u.name}
+              </option>
+            ))}
+          </select>
+        </label>
       </div>
 
       <button type="submit" className="btn btn-primary mt-2">
@@ -140,4 +134,4 @@ function NewTaskForm({ onTaskAdded }) {
     </form>
   );
 }
-export default NewTaskForm
+export default NewTaskForm;
