@@ -51,7 +51,8 @@ function Dashboard() {
     alert("Feladat törölve!")
   }
   const handleArchive = async (taskId) => {
-    await archiveTask(taskId);
+    await archiveTask(taskId);    
+    setTasks((prev) => prev.filter((t) => t.task_id !== taskId));
 
     alert("Feladat archiválva!");
   }
