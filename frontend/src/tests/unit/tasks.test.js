@@ -77,4 +77,70 @@ describe("tasks API", () => {
     expect(result).toEqual(mockUsers);
   });
 
+  it("assignTaskToUser: task hozzárendelése userhez", async () => {
+    const updated = { task_id: "1", assigned_to: "u1" };
+    supabase.from.mockReturnValue({
+      update: () => ({
+        eq: () => ({
+          select: () => ({ single: () => ({ data: updated, error: null }) }),
+        }),
+      }),
+    });
+
+    const result = await assignTaskToUser("1", "u1");
+    expect(result).toEqual(updated);
+  });
+
+  it("markTaskComplete: állapot done-ra váltása", async () => {
+    const updated = { task_id: "1", status: "done" };
+    supabase.from.mockReturnValue({
+      update: () => ({
+        eq: () => ({ select: () => ({ data: [updated], error: null }) }),
+      }),
+    });
+
+    const result = await markTaskComplete("1", true);
+    expect(result.status).toBe("done");
+  });
+
+  it("archiveTask: archiválás", async () => {
+    const archived = { archive_id: "a1", task_id: "1" };
+    supabase.from.mockReturnValue({
+      insert: () => ({
+        select: () => ({ single: () => ({ data: archived, error: null }) }),
+      }),
+    });
+
+    const result = await archiveTask("1");
+    expect(result).toEqual(archived);
+  });
+
+  it("getArchivedTasks: userId nélkül ad vissza adatokat", async () => {
+    const archived = [{ task_id: "1", title: "Régi" }];
+    supabase.from.mockReturnValueOnce({
+      select: () => ({ order: () => ({ data: archived, error: null }) }),
+    });
+
+    const result = await getArchivedTasks();
+    expect(result).toEqual(archived);
+  });
+});
+
+it("getTasks: hibás adatra fail", async () => {
+  const mockData = [{ task_id: "1", title: "Valami más" }];
+  supabase.from.mockReturnValue({
+    select: () => ({ order: () => ({ data: mockData, error: null }) }),
+  });
+
+  const result = await getTasks();
+  const expected = [{ task_id: "1", title: "Teszt Task" }];
+  expect(result).not.toEqual(expected); // szándékosan eltérő, így false lesz
+});
+
+it("deleteTask: hibás id esetén fail", async () => {
+  supabase.from.mockReturnValue({
+    delete: () => ({ eq: () => ({ error: "not found" }) }),
+  });
+
+  await expect(deleteTask("999")).rejects.toThrow("not found");
 });
