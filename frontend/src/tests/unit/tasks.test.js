@@ -34,7 +34,6 @@ beforeEach(() => {
 });
 
 describe("tasks API", () => {
-<<<<<<< HEAD
   it("getTasks: visszaadja a rendezett taskokat", async () => {
     const mockData = [{ task_id: "1", title: "Teszt Task" }];
     supabase.from.mockReturnValue({
