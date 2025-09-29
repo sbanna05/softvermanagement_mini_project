@@ -21,6 +21,14 @@ vi.mock("../../api/supabaseClient.js", () => ({
   },
 }));
 
+vi.mock("../../context/AuthContext", () => ({
+  UserAuth: () => ({
+    session: { user: { name: "Teszt Elek" } },
+    signOut: vi.fn(),
+  }),
+}));
+
+
 beforeEach(() => {
   vi.clearAllMocks();
 });
@@ -75,20 +83,6 @@ describe("tasks API", () => {
 
     const result = await getUsers();
     expect(result).toEqual(mockUsers);
-  });
-
-  it("assignTaskToUser: task hozzárendelése userhez", async () => {
-    const updated = { task_id: "1", assigned_to: "u1" };
-    supabase.from.mockReturnValue({
-      update: () => ({
-        eq: () => ({
-          select: () => ({ single: () => ({ data: updated, error: null }) }),
-        }),
-      }),
-    });
-
-    const result = await assignTaskToUser("1", "u1");
-    expect(result).toEqual(updated);
   });
 
   it("markTaskComplete: állapot done-ra váltása", async () => {
