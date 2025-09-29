@@ -5,6 +5,7 @@ import * as api from "../../api/tasks.js";
 
 describe("NewTaskForm", () => {
   const mockOnTaskAdded = vi.fn();
+  const mockCurrentUser = { user_id: "test-user", name: "Mock User" };
 
   const mockUsers = [
     { user_id: "u1", name: "Teszt Elek" },
@@ -18,21 +19,20 @@ describe("NewTaskForm", () => {
   });
 
   it("renders all form elements", async () => {
-    render(<NewTaskForm onTaskAdded={mockOnTaskAdded} />);
+    render(<NewTaskForm onTaskAdded={mockOnTaskAdded} currentUser={mockCurrentUser} />);
     
     expect(screen.getByPlaceholderText("Új feladat címe")).toBeInTheDocument();
     expect(screen.getByPlaceholderText("Új feladat leírása")).toBeInTheDocument();
     expect(screen.getByText("Hozzáadás")).toBeInTheDocument();
 
-    // Várjuk, hogy a felhasználói select betöltődjön
+    // várjuk, hogy a felhasználói select betöltődjön
     await waitFor(() => expect(screen.getByText("Teszt Elek")).toBeInTheDocument());
     expect(screen.getByText("Anna")).toBeInTheDocument();
   });
 
   it("submits form and calls onTaskAdded", async () => {
-    render(<NewTaskForm onTaskAdded={mockOnTaskAdded} />);
+    render(<NewTaskForm onTaskAdded={mockOnTaskAdded} currentUser={mockCurrentUser} />);
     
-    // várjuk a felhasználó betöltődést
     await waitFor(() => screen.getByText("Teszt Elek"));
 
     fireEvent.change(screen.getByPlaceholderText("Új feladat címe"), { target: { value: "Új Task" } });
@@ -47,7 +47,6 @@ describe("NewTaskForm", () => {
       task_owner_id: "u1"
     })));
 
-    // ellenőrizzük a form reset-et
     expect(screen.getByPlaceholderText("Új feladat címe").value).toBe("");
     expect(screen.getByPlaceholderText("Új feladat leírása").value).toBe("");
   });
